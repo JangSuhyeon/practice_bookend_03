@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable() // ajax POST 호출을 위함
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 .antMatchers("/css/**", "/fonts/**", "/vendor/**","/images/**", "/js/**", "/login/**").permitAll()

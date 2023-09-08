@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Select2 라이브러리 로드 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <style>
+        .selection img {
+            display: none;
+        }
+        input[type='checkbox'] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <select id="searchBook" name="isbn" class="js-example-basic-single" style="width: 300px;"></select>
+        <img id="cover">
+        <p id="author"></p>
+        <p id="publisher"></p>
+        <div>
+            <label for="checkbox-1"><input type="checkbox" id="checkbox-1" checked><span id="text-1">❤️️️</span></label>
+            <label for="checkbox-2"><input type="checkbox" id="checkbox-2"><span id="text-2">🤍</span></label>
+            <label for="checkbox-3"><input type="checkbox" id="checkbox-3"><span id="text-3">🤍</span></label>
+            <label for="checkbox-4"><input type="checkbox" id="checkbox-4"><span id="text-4">🤍</span></label>
+            <label for="checkbox-5"><input type="checkbox" id="checkbox-5"><span id="text-5">🤍</span></label>
+        </div>
+        <input type="text" name="shortReview">
+        <textarea name="longReview"></textarea>
+    </form>
+</body>
+<script src="/js/book.js"></script>
+</html>

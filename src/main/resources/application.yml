@@ -11,3 +11,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
+
+aladin:
+  url: http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbihj00431455001
