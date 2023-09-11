@@ -1,0 +1,65 @@
+.login-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(/images/login_bg.png);
+    background-size: cover;
+}
+
+.login-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 100px 75px;
+    background-color: #fff;
+    /* box-shadow: rgba(216, 232, 255, 0.35) 0px 7px 29px 0px; */
+    box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
+}
+
+.login-book-icon {
+    margin-bottom: 30px;
+}
+
+.login-title {
+    font-size: 33px;
+    line-height: 33px;
+    font-weight: 900;
+    margin-bottom: 14px;
+}
+
+.login-info-1 {
+    font-size: 15px;
+    line-height: 15px;
+    color: #191466;
+    font-weight: 500;
+    margin-bottom: 39px;
+}
+
+.login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 406px;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    border: 1px solid #d2d9ec;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #191466;
+}
+
+.login-btn>img {
+    height: 20px;
+    margin-right: 9px;
+}
+
+.login-google {
+    margin-bottom: 22px;
+}
+
+.login-guest {
+    background-color: #fbf0fc;
+}

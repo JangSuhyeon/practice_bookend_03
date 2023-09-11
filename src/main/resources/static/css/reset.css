@@ -1,0 +1,43 @@
+/* Modern CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    color: inherit;
+    /* 링크의 기본 색상을 부모 요소로부터 상속받음 */
+    text-decoration: none;
+    /* 링크에 밑줄을 추가합니다 */
+    cursor: pointer;
+    /* 포인터 커서를 표시하여 링크로 인식되게 합니다 */
+}
