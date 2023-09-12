@@ -1,3 +1,62 @@
-<span th:text="${username}"></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookend</title>
 
-<a href="/book/write">write</a>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="wrapper">
+
+        <!-- sidebar -->
+        <div class="sidebar-container">
+            <div class="siderbar-userinfo">
+                <figure><img src="/images/sample_profile.jpg"></figure>
+                <p class="sidebar-name-container">
+                    <span class="sidebar-name">SpongeBob</span>
+                    <span class="sidebar-role">SquarePants</span>
+                </p>
+            </div>
+
+            <a class="gra-btn" href="/book/write">독후감 쓰기</a>
+            <a class="siderbar-btn siderbar-btn-1" href="/"><figure><img src="/images/sidebar_list_icon.png"></figure>독후감 목록</a>
+
+            <ul class="sidebar-chat-container">
+                <li><a class="siderbar-btn siderbar-btn-2"  href="">
+                    <figure><img src="/images/sample_profile.jpg"></figure>
+                    <div class="sidebar-title">도시와 그 불확실한 벽</div>
+                    <div class="sidebar-cnt-container">
+                        <div class="sidebar-cnt">5</div>
+                        <div class="sidebar-date">14:27</div>
+                    </div>
+                </a></li>
+                <li><a class="siderbar-btn siderbar-btn-2"  href="">
+                    <figure><img src="/images/sample_profile.jpg"></figure>
+                    <div class="sidebar-title">퓨처 셀프</div>
+                    <div class="sidebar-cnt-container">
+                        <div class="sidebar-cnt">5</div>
+                        <div class="sidebar-date">9월 12일</div>
+                    </div>
+                </a></li>
+                <li><a class="siderbar-btn siderbar-btn-2"  href="">
+                    <figure><img src="/images/sample_profile.jpg"></figure>
+                    <div class="sidebar-title">디케의 눈물</div>
+                    <div class="sidebar-cnt-container">
+                        <div class="sidebar-date">9월 12일</div>
+                    </div>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
