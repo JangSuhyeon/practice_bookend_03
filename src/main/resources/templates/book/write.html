@@ -2,38 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookend</title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
     <!-- Select2 라이브러리 로드 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-    <style>
-        .selection img {
-            display: none;
-        }
-        input[type='checkbox'] {
-            display: none;
-        }
-    </style>
 </head>
 <body>
-    <form>
-        <select id="searchBook" name="isbn" class="js-example-basic-single" style="width: 300px;"></select>
-        <img id="cover">
-        <p id="author"></p>
-        <p id="publisher"></p>
-        <div>
-            <label for="checkbox-1"><input type="checkbox" id="checkbox-1" checked><span id="text-1">❤️️️</span></label>
-            <label for="checkbox-2"><input type="checkbox" id="checkbox-2"><span id="text-2">🤍</span></label>
-            <label for="checkbox-3"><input type="checkbox" id="checkbox-3"><span id="text-3">🤍</span></label>
-            <label for="checkbox-4"><input type="checkbox" id="checkbox-4"><span id="text-4">🤍</span></label>
-            <label for="checkbox-5"><input type="checkbox" id="checkbox-5"><span id="text-5">🤍</span></label>
+<div class="container">
+    <div class="wrapper">
+
+        <!-- sidebar -->
+        <div class="sidebar-container">
+            <div class="siderbar-userinfo">
+                <figure><img src="/images/sample_profile.jpg"></figure>
+                <p class="sidebar-name-container">
+                    <span class="sidebar-name">SpongeBob</span>
+                    <span class="sidebar-role">SquarePants</span>
+                </p>
+            </div>
+
+            <a class="gra-btn" href="/book/write">독후감 쓰기</a>
+            <a class="siderbar-btn siderbar-btn-1" href="/"><figure><img src="/images/sidebar_list_icon.png"></figure>독후감 목록</a>
+
+            <ul class="sidebar-chat-container">
+                <li><a class="siderbar-btn siderbar-btn-2"  href="">
+                    <figure><img src="/images/sample_profile.jpg"></figure>
+                    <div class="sidebar-title">도시와 그 불확실한 벽</div>
+                    <div class="sidebar-cnt-container">
+                        <div class="sidebar-cnt">5</div>
+                        <div class="sidebar-date">14:27</div>
+                    </div>
+                </a></li>
+                <li><a class="siderbar-btn siderbar-btn-2"  href="">
+                    <figure><img src="/images/sample_profile.jpg"></figure>
+                    <div class="sidebar-title">퓨처 셀프</div>
+                    <div class="sidebar-cnt-container">
+                        <div class="sidebar-cnt">5</div>
+                        <div class="sidebar-date">9월 12일</div>
+                    </div>
+                </a></li>
+                <li><a class="siderbar-btn siderbar-btn-2"  href="">
+                    <figure><img src="/images/sample_profile.jpg"></figure>
+                    <div class="sidebar-title">디케의 눈물</div>
+                    <div class="sidebar-cnt-container">
+                        <div class="sidebar-date">9월 12일</div>
+                    </div>
+                </a></li>
+            </ul>
         </div>
-        <input type="text" name="shortReview">
-        <textarea name="longReview"></textarea>
-    </form>
+
+        <div class="main-contents">
+            <form>
+                <div class="row mb-30 hr">
+                    <input type="hidden" id="title">
+                    <div class="col">
+                        <div class="col mb-15">
+                            <h2 class="input title">도서명</h2>
+                            <select id="searchBook" class="js-example-basic-single"></select>
+                        </div>
+                        <div class="row row-2">
+                            <div class="col">
+                                <h2 class="input title">작가</h2>
+                                <p id="author" class="input"></p>
+                            </div>
+                            <div class="col">
+                                <h2 class="input title">출판사</h2>
+                                <p id="publisher" class="input"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col cover">
+                        <img id="cover">
+                    </div>
+                </div>
+                <div class="row row-2 row-15">
+                    <div class="col">
+                        <h2 class="input title">취향도</h2>
+                        <div class="heart">
+                            <label for="checkbox-1"><input type="checkbox" id="checkbox-1" checked><span id="text-1">❤️️️</span></label>
+                            <label for="checkbox-2"><input type="checkbox" id="checkbox-2"><span id="text-2">🤍</span></label>
+                            <label for="checkbox-3"><input type="checkbox" id="checkbox-3"><span id="text-3">🤍</span></label>
+                            <label for="checkbox-4"><input type="checkbox" id="checkbox-4"><span id="text-4">🤍</span></label>
+                            <label for="checkbox-5"><input type="checkbox" id="checkbox-5"><span id="text-5">🤍</span></label>
+                        </div>
+                    </div>
+                    <div class="col mb-15">
+                        <h2 class="input title">한줄평</h2>
+                        <input type="text" class="input" id="shortReview">
+                    </div>
+                </div>
+                <div class="row row-textarea">
+                    <div class="col">
+                        <h2 class="input title">감상문</h2>
+                        <textarea class="textarea" id="longReview"></textarea>
+                    </div>
+                </div>
+
+                <div class="btn-controller">
+                    <button type="button" id="book-save-btn" class="gra-btn">저장하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 <script src="/js/book.js"></script>
 </html>

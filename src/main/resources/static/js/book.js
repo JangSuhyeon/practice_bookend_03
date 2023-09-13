@@ -1,6 +1,7 @@
 $(function () {
 
     // 알라딘 Open API를 이용한 도서 검색
+    var title = $('#title');
     var cover = $('#cover');
     var author = $('#author');
     var publisher = $('#publisher');
@@ -28,6 +29,7 @@ $(function () {
                         return {
                             text: option,
                             id: item.isbn,
+                            title:item.title,
                             author:item.author,
                             publisher:item.publisher,
                             cover:item.cover
@@ -52,6 +54,7 @@ $(function () {
             cover.hide();
         }
 
+        title.val(selectedOption.title);
         author.text(selectedOption.author);
         publisher.text(selectedOption.publisher);
     }).on('select2:unselect', function () {
@@ -71,5 +74,53 @@ $(function () {
                 $(this).siblings('span').text('🤍');
             }
         });
+    });
+
+    // 독후감 저장
+    $('#book-save-btn').click(function () {
+
+        // 취향도 구하기
+       var checkedCheckboxes = $(".heart input[type='checkbox']:checked");
+       var heartCnt = checkedCheckboxes.length;
+
+       // validate
+        var isbn = $('#searchBook').val();
+        var title = $('#title').val().trim();
+        var author = $('#author').text().trim();
+        var publisher = $('#publisher').text().trim();
+        var cover = $('#cover').attr('src');
+        var shortReview = $('#shortReview').val().trim();
+        var longReview = $('#longReview').val().trim();
+
+        if (!isbn) {
+            alert('도서를 선택해주세요.');
+        } else if (!shortReview){ // Todo 한줄평 max-length 추가
+            alert('한줄평을 작성해주세요.');
+        } else {
+           var requestParam = {
+               'isbn' : isbn,
+               'title' : title,
+               'author' : author,
+               'publisher' : publisher,
+               'cover' : cover,
+               'score' : heartCnt,
+               'shortReview' : shortReview,
+               'longReview' : longReview
+           }
+
+            // 저장
+            $.ajax({
+                type:'POST',
+                url:'/book/write',
+                data:JSON.stringify(requestParam),
+                contentType: 'application/json',
+                success:function (res) {
+                    location.href="/";
+                },
+                error:function () {
+                    alert('저장에 실패했습니다.');
+                }
+            })
+        }
     });
 })
