@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,9 +58,21 @@
         </div>
 
         <div class="main-contents">
-
+            <ul class="bookReview-list">
+                <li th:each="bookReview:${bookReviewList}">
+                    <figure class="list-cover"><img th:src="${bookReview.book.cover}"></figure>
+                    <div class="list-info">
+                        <div class="list-title-container">
+                            <p class="list-title" th:text="${bookReview.book.title}">나무</p>
+                            <p class="list-date">23년 9월 13일</p>
+                        </div>
+                        <p class="list-shortReview" th:text="${bookReview.shortReview}">리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.리뷰 입니당.</p>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 </body>
+<script src="/js/book.js"></script>
 </html>

@@ -3,10 +3,14 @@ package com.bookend.book.service;
 import com.bookend.book.domain.Book;
 import com.bookend.book.domain.BookReview;
 import com.bookend.book.domain.dto.BookRequestDto;
+import com.bookend.book.domain.dto.BookResponseDto;
 import com.bookend.book.repository.BookRepository;
 import com.bookend.book.repository.BookReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -37,5 +41,17 @@ public class BookService {
         bookRequestDto.setBookId(bookId);
         BookReview bookReview = BookReview.toEntity(bookRequestDto);
         bookReviewRepository.save(bookReview);
+    }
+
+    // 독후감 목록 조회
+    public List<BookResponseDto> findAll() {
+
+        List<BookReview> bookList = bookReviewRepository.findAll();
+
+        List<BookResponseDto> bookResponseDtoList = new ArrayList<>();
+        for (BookReview bookReview : bookList) {
+            BookResponseDto bookResponseDto = BookResponseDto.b
+        }
+
     }
 }
