@@ -50,7 +50,11 @@ public class BookService {
 
         List<BookResponseDto> bookResponseDtoList = new ArrayList<>();
         for (BookReview bookReview : bookList) {
-            BookResponseDto bookResponseDto = BookResponseDto.b
+            BookResponseDto bookResponseDto = BookResponseDto.builder()
+                    .book(bookReview.getBook)
+                    .shortReview(bookReview.getShortReview())
+                    .regDt(bookReview.get)
+                    .build();
         }
 
     }
