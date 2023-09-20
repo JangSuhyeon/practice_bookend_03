@@ -9,6 +9,9 @@ import com.bookend.book.repository.BookReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +34,10 @@ public class BookService {
         if (foundBook == null) {
             Book book = Book.toEntity(bookRequestDto);
             Book savedBook = bookRepository.save(book);
-            bookId = savedBook.getId();
+            bookId = savedBook.getBookId();
         }else{
             // 기존에 저장된 도서이면 찾은 도서의 id를 가져오기
-            bookId = foundBook.getId();
+            bookId = foundBook.getBookId();
         }
 
         // 독후감 저장
@@ -49,13 +52,16 @@ public class BookService {
         List<BookReview> bookList = bookReviewRepository.findAll();
 
         List<BookResponseDto> bookResponseDtoList = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yy년 M월 dd일");
         for (BookReview bookReview : bookList) {
             BookResponseDto bookResponseDto = BookResponseDto.builder()
-                    .book(bookReview.getBook)
+                    .book(bookReview.getBook())
                     .shortReview(bookReview.getShortReview())
-                    .regDt(bookReview.get)
+                    .regDt(sdf.format(bookReview.getRegDt()))
                     .build();
+            bookResponseDtoList.add(bookResponseDto);
         }
 
+        return bookResponseDtoList;
     }
 }

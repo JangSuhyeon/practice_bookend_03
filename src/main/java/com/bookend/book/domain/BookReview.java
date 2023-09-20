@@ -1,8 +1,10 @@
 package com.bookend.book.domain;
 
 import com.bookend.book.domain.dto.BookRequestDto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,11 +12,13 @@ import java.util.Date;
 @Getter
 @Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookReview {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long reviewId;
 
     @Column(nullable = false)
     private Long bookId;
@@ -28,7 +32,9 @@ public class BookReview {
     @Temporal(TemporalType.TIMESTAMP)
     private Date regDt;
 
-    // Todo Book과 조인
+    // Book과 조인
+    @ManyToOne
+    @JoinColumn(name = "bookId", insertable = false, updatable = false)
     private Book book;
 
     // dto -> entity

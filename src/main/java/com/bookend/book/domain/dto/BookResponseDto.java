@@ -4,6 +4,8 @@ import com.bookend.book.domain.Book;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Date;
+
 @Builder
 @Getter
 public class BookResponseDto {

@@ -26,7 +26,8 @@ public class MainController {
         }
 
         // 독후감 목록
-        List<BookResponseDto> bookList = bookService.findAll();
+        List<BookResponseDto> bookReviewList = bookService.findAll();
+        model.addAttribute("bookReviewList", bookReviewList);
 
         return "index";
     }
