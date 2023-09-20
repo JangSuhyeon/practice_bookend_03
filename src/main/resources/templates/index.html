@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,14 +61,18 @@
 
         <div class="main-contents">
             <ul class="bookReview-list">
-                <li th:each="bookReview:${bookReviewList}">
+                <li th:each="bookReview:${bookReviewList}" class="review-item" th:data-review-id="${bookReview.reviewId}">
+                    <input type="hidden" class="list-score-value" th:value="${bookReview.score}"/>
                     <figure class="list-cover"><img th:src="${bookReview.book.cover}"></figure>
                     <div class="list-info">
                         <div class="list-title-container">
                             <p class="list-title" th:text="${bookReview.book.title}"></p>
+                            <p class="list-score" ></p>
+                        </div>
+                        <div class="list-con-container">
+                            <p class="list-shortReview" th:text="${bookReview.shortReview}"></p>
                             <p class="list-date" th:text="${bookReview.regDt}"></p>
                         </div>
-                        <p class="list-shortReview" th:text="${bookReview.shortReview}"></p>
                     </div>
                 </li>
             </ul>
@@ -74,5 +80,5 @@
     </div>
 </div>
 </body>
-<script src="/js/book.js"></script>
+<script src="/js/reviewList.js"></script>
 </html>

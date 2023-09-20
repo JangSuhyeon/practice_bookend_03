@@ -62,7 +62,7 @@ $(function () {
         cover.hide();
     });
 
-    // 체크박스와 텍스트 요소 선택
+    // 취향도 선택
     $('input[type="checkbox"]').change(function () {
         var clickedIndex = $(this).parent().index(); // 부모(label) 엘리먼트의 인덱스를 가져옵니다.
         $('input[type="checkbox"]').each(function (index) {
@@ -125,6 +125,4 @@ $(function () {
             })
         }
     });
-
-    // 독후감 목록
 })

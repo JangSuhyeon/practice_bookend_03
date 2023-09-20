@@ -1,12 +1,11 @@
 package com.bookend.main.controller;
 
-import com.bookend.book.domain.dto.BookResponseDto;
+import com.bookend.book.domain.dto.BookReviewResponseDto;
 import com.bookend.book.service.BookService;
 import com.bookend.security.dto.LoginUser;
 import com.bookend.security.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -26,7 +25,7 @@ public class MainController {
         }
 
         // 독후감 목록
-        List<BookResponseDto> bookReviewList = bookService.findAll();
+        List<BookReviewResponseDto> bookReviewList = bookService.findAll();
         model.addAttribute("bookReviewList", bookReviewList);
 
         return "index";

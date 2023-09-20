@@ -1,11 +1,13 @@
 package com.bookend.book.controller;
 
 import com.bookend.book.domain.dto.BookRequestDto;
+import com.bookend.book.domain.dto.BookReviewResponseDto;
 import com.bookend.book.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -59,6 +61,17 @@ public class BookController {
         bookService.save(bookRequestDto);
 
         return ResponseEntity.ok("성공");
+    }
+
+    // 독후감 상세 화면으로
+    @GetMapping("/{reviewId}")
+    public String goToBookWrite(@PathVariable("reviewId") Long reviewId, Model model) {
+
+        // 독후감 상세 정보 조회
+        BookReviewResponseDto review = bookService.findByReviewId(reviewId);
+        model.addAttribute("review", review);
+
+        return "book/detail";
     }
 
 }

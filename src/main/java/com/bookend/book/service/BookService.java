@@ -3,15 +3,12 @@ package com.bookend.book.service;
 import com.bookend.book.domain.Book;
 import com.bookend.book.domain.BookReview;
 import com.bookend.book.domain.dto.BookRequestDto;
-import com.bookend.book.domain.dto.BookResponseDto;
+import com.bookend.book.domain.dto.BookReviewResponseDto;
 import com.bookend.book.repository.BookRepository;
 import com.bookend.book.repository.BookReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,21 +44,24 @@ public class BookService {
     }
 
     // 독후감 목록 조회
-    public List<BookResponseDto> findAll() {
+    public List<BookReviewResponseDto> findAll() {
 
         List<BookReview> bookList = bookReviewRepository.findAll();
 
-        List<BookResponseDto> bookResponseDtoList = new ArrayList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yy년 M월 dd일");
+        List<BookReviewResponseDto> bookResponseDtoList = new ArrayList<>();
         for (BookReview bookReview : bookList) {
-            BookResponseDto bookResponseDto = BookResponseDto.builder()
-                    .book(bookReview.getBook())
-                    .shortReview(bookReview.getShortReview())
-                    .regDt(sdf.format(bookReview.getRegDt()))
-                    .build();
-            bookResponseDtoList.add(bookResponseDto);
+            BookReviewResponseDto bookReviewResponseDto = BookReviewResponseDto.toDto(bookReview);
+            bookResponseDtoList.add(bookReviewResponseDto);
         }
 
         return bookResponseDtoList;
+    }
+
+    // 독후감 상세 정보 조회
+    public BookReviewResponseDto findByReviewId(Long reviewId) {
+
+        BookReview bookReview = bookReviewRepository.findByReviewId(reviewId);
+
+        return BookReviewResponseDto.toDto(bookReview);
     }
 }
