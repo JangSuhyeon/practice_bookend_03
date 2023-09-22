@@ -18,17 +18,19 @@ public class OAuthAttributes {
     private String name;
     private String email;
     private String picture;
+    private String ip;
 
-    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
+    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes, String ip) {
         // registrationId를 가지고 어떤 소셜 로그인인지 분기
-        return ofGoogle(userNameAttributeName, attributes);
+        return ofGoogle(userNameAttributeName, attributes, ip);
     }
 
-    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
+    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes, String ip) {
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
                 .picture((String) attributes.get("picture"))
+                .ip(ip)
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -39,6 +41,7 @@ public class OAuthAttributes {
                 .name(name)
                 .email(email)
                 .picture(picture)
+                .ip(ip)
                 .role(Role.USER)
                 .build();
     }

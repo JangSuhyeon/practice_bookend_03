@@ -19,6 +19,8 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +47,13 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 .getUserNameAttributeName(); // OAuth2 로그인 진행 시 키가 되는 필드값
         System.out.println("registrationId : " + registrationId);
         System.out.println("userNameAttributeName : " + userNameAttributeName);
-        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes()); // userRequest 안에 담긴 사용자 정보를 OAuthAttributes로 변환
+        String ip;
+        try {
+             ip = String.valueOf(InetAddress.getLocalHost());
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes(), ip); // userRequest 안에 담긴 사용자 정보를 OAuthAttributes로 변환
 
         User user = saveOrUpdate(attributes);
         httpSession.setAttribute("user", new SessionUser(user)); // 세션에 사용자 정보 저장
