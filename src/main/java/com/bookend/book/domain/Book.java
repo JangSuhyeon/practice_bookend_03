@@ -1,8 +1,6 @@
 package com.bookend.book.domain;
 
 import com.bookend.book.domain.dto.BookRequestDto;
-import com.bookend.book.domain.dto.BookResponseDto;
-import com.bookend.book.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

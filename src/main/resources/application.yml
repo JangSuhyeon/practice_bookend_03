@@ -7,7 +7,7 @@ spring:
     suffix: .html
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect

@@ -83,10 +83,15 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         // 게스트 속성 생성
         Map<String, Object> guestAttributes = new HashMap<>();
         guestAttributes.put("name", name);
-        guestAttributes.put("email", "GUEST");
-        guestAttributes.put("picture", "GUEST");
 
-        OAuthAttributes attributes = OAuthAttributes.of("guest", "email", guestAttributes);
+        String ip;
+        try {
+             ip = String.valueOf(InetAddress.getLocalHost());
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("ip : " + ip);
+        OAuthAttributes attributes = OAuthAttributes.of("guest", "email", guestAttributes, ip);
 
         User user = guestSave(attributes);
         httpSession.setAttribute("user", new SessionUser(user)); // 세션에 사용자 정보 저장

@@ -33,16 +33,16 @@ public class User {
     @Column
     private String picture;
     private String ip;
-    private Date regDt;
+    private Date lastConDt;
 
     @Enumerated(EnumType.STRING) // Enum type의 상수를 데이터베이스에 문자열로 저장하도록 지정
     @Column(nullable = false)
     private Role role;
 
-    // Todo ip, regDt -> lastconDt로 변경 필요;
+    // Todo ip, regDt
     @PrePersist
-    protected void setRegDt() {
-        this.regDt = new Date();
+    protected void setLastConDt() {
+        this.lastConDt = new Date();
     }
 
     public User update(String name, String picture) {

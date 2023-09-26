@@ -21,15 +21,32 @@ public class OAuthAttributes {
     private String ip;
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes, String ip) {
-        // registrationId를 가지고 어떤 소셜 로그인인지 분기
-        return ofGoogle(userNameAttributeName, attributes, ip);
+        // Todo registrationId를 가지고 어떤 소셜 로그인인지 분기
+        if (registrationId.equals("google")) {
+            return ofGoogle(userNameAttributeName, attributes, ip);
+        } else {
+            return ofGuest(userNameAttributeName, attributes, ip);
+        }
     }
 
+    // Google OAuth 인증을 통해 얻은 사용자 정보
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes, String ip) {
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
                 .picture((String) attributes.get("picture"))
+                .ip(ip)
+                .attributes(attributes)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
+    }
+
+    // 게스트
+    private static OAuthAttributes ofGuest(String userNameAttributeName, Map<String, Object> attributes, String ip) {
+        return OAuthAttributes.builder()
+                .name((String) attributes.get("name"))
+                .email("GUEST")
+                .picture("GUEST")
                 .ip(ip)
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
