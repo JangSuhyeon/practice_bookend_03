@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,8 @@
 
 	<link rel="stylesheet" href="/css/reset.css">
 	<link rel="stylesheet" href="/css/style.css">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<!-- google fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,8 +21,63 @@
 		<figure class="login-book-icon"><img src="/images/login_book_icon.png"></figure>		<h2 class="login-title">Hey, hello</h2>
 		<p class="login-info-1">Enter your credentials</p>
 		<a class="login-btn login-google" href="/oauth2/authorization/google"><img src="/images/login_google.png"><span>Sign in with Google</span></a>
-		<a class="login-btn login-guest" href="/login/guest">Guest Login</span></a>
+
+		<!--Todo Guest Login 클릭 시 Post /login/guest 요청-->
+		<a class="login-btn login-guest" href="javascript:void(0);" onclick="guestLogin()">Guest Login</span></a>
 	</div>
 </div>
+<div th:if="${param.error}">
+	Invalid username and password.</div>
+<div th:if="${param.logout}">
+	You have been logged out.</div>
+<form id="guestLoginFrm" th:action="@{/login}" method="post">
+	<input type="hidden" name="username" >
+	<input type="hidden" name="password" >
+</form>
+
+<script>
+
+	// 게스트 로그인
+	function guestLogin() {
+		// 회원가입
+		$.ajax({
+			type:'GET',
+			url:'/login/guest/join',
+			success:function (res) {
+				$('input[name="username"]').val(res.username);
+				$('input[name="password"]').val(res.password);
+				console.log(res);
+				$('#guestLoginFrm').submit();
+				// // 서버에서 받은 사용자 정보를 사용하여 로그인 시도
+				// var username = res.username; // 사용자명
+				// var password = res.password; // 비밀번호
+				//
+				// var form = document.createElement("form");
+				// form.setAttribute("method", "POST");
+				// form.setAttribute("action", "/login");
+				//
+				// // 사용자명과 비밀번호를 숨겨진 필드로 추가
+				// var hiddenInput1 = document.createElement("input");
+				// hiddenInput1.setAttribute("type", "hidden");
+				// hiddenInput1.setAttribute("name", "username");
+				// hiddenInput1.setAttribute("value", username);
+				//
+				// var hiddenInput2 = document.createElement("input");
+				// hiddenInput2.setAttribute("type", "hidden");
+				// hiddenInput2.setAttribute("name", "password");
+				// hiddenInput2.setAttribute("value", password);
+				//
+				// form.appendChild(hiddenInput1);
+				// form.appendChild(hiddenInput2);
+				// console.log(form);
+				// document.body.appendChild(form);
+				// form.submit();
+			},
+			error:function () {
+				console.log('error');
+			}
+		})
+	}
+</script>
 </body>
 </html>

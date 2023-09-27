@@ -8,12 +8,12 @@ import lombok.ToString;
 @Getter
 public class SessionUser {
     private String name;
-    private String emil;
+    private String username;
     private String picture;
 
     public SessionUser(User user) {
         this.name = user.getName();
-        this.emil = user.getEmail();
+        this.username = user.getUsername();
         this.picture = user.getPicture();
     }
 }

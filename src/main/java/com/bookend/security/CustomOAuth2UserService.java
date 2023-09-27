@@ -54,7 +54,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
             throw new RuntimeException(e);
         }
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes(), ip); // userRequest 안에 담긴 사용자 정보를 OAuthAttributes로 변환
-
+        System.out.println("attributes : " + attributes);
         User user = saveOrUpdate(attributes);
         httpSession.setAttribute("user", new SessionUser(user)); // 세션에 사용자 정보 저장
 
@@ -67,50 +67,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     // 사용자 정보 저장 및 업데이트
     private User saveOrUpdate(OAuthAttributes attributes) {
         // 기존에 있는 사용자 이면 정보 업데이트
-        User user = userRepository.findByEmail(attributes.getEmail())
+        User user = userRepository.findByUsername(attributes.getUsername())
                 .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
 
-        return userRepository.save(user);
-    }
-
-    // 게스트 로그인
-    public OAuth2User guestLogin() {
-        System.out.println("게스트 로그인");
-        // 게스트 이름 생성
-        String name = "GUEST" + String.format("%02d", userRepository.countByRole(Role.GUEST));
-
-        // 게스트 속성 생성
-        Map<String, Object> guestAttributes = new HashMap<>();
-        guestAttributes.put("name", name);
-
-        String ip;
-        try {
-             ip = String.valueOf(InetAddress.getLocalHost());
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("ip : " + ip);
-        OAuthAttributes attributes = OAuthAttributes.of("guest", "email", guestAttributes, ip);
-
-        User user = guestSave(attributes);
-        httpSession.setAttribute("user", new SessionUser(user)); // 세션에 사용자 정보 저장
-
-        OAuth2User guestUser = new DefaultOAuth2User(
-                Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())), // 사용자 Role의 key를 가져와 권한 설정
-                attributes.getAttributes(),
-                attributes.getNameAttributeKey());
-
-        // Spring Security에 사용자 인증 정보를 설정
-        Authentication authentication = new UsernamePasswordAuthenticationToken(guestUser, null, guestUser.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return guestUser;
-    }
-
-    // 게스트 정보 저장
-    private User guestSave(OAuthAttributes attributes) {
-        User user = attributes.toGuestEntity();
         return userRepository.save(user);
     }
 }
