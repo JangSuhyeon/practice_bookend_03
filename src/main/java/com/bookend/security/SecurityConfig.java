@@ -36,35 +36,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable() // ajax POST 호출을 위함
+                .cors().disable()
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 .antMatchers("/css/**", "/images/**", "/js/**", "/login/guest/join", "/login").permitAll()
                                 .anyRequest().authenticated()
                 )
-                .formLogin(formLogin ->
-                        formLogin
-                                .loginPage("/login/page")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/")
-                                .successHandler(
-                                        new AuthenticationSuccessHandler() {
-                                            @Override
-                                            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                                                System.out.println("authentication : " + authentication.getName());
-                                                response.sendRedirect("/"); // 인증이 성공한 후에는 root로 이동
-                                            }
-                                        }
-                                )
-                                .failureHandler(
-                                        new AuthenticationFailureHandler() {
-                                            @Override
-                                            public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-                                                System.out.println("exception : " + exception.getMessage());
-                                                response.sendRedirect("/login");
-                                            }
-                                        }
-                                )
-                                .permitAll()
+                .formLogin(login -> login
+                    .defaultSuccessUrl("/", true)
+                    .permitAll()
                 );
 //                .oauth2Login(oauth2Login ->
 //                        oauth2Login

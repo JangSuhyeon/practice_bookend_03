@@ -30,9 +30,10 @@
 	Invalid username and password.</div>
 <div th:if="${param.logout}">
 	You have been logged out.</div>
-<form id="guestLoginFrm" th:action="@{/login}" method="post">
-	<input type="hidden" name="username" >
-	<input type="hidden" name="password" >
+<form id="guestLoginFrm" method="post" action="/login">
+	<input type="text" name="username" >
+	<input type="text" name="password" >
+	<button type="submit">클릭</button>
 </form>
 
 <script>
@@ -44,10 +45,10 @@
 			type:'GET',
 			url:'/login/guest/join',
 			success:function (res) {
+				console.log(res);
 				$('input[name="username"]').val(res.username);
 				$('input[name="password"]').val(res.password);
-				console.log(res);
-				$('#guestLoginFrm').submit();
+				// $('#guestLoginFrm').submit();
 				// // 서버에서 받은 사용자 정보를 사용하여 로그인 시도
 				// var username = res.username; // 사용자명
 				// var password = res.password; // 비밀번호
