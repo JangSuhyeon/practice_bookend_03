@@ -268,7 +268,7 @@
 
 
 /*write*/
-.select2-container {
+.select2.select2-container {
     border:2px solid #eee !important;
     border-radius: 5px;
     width:100% !important;
@@ -317,11 +317,11 @@ form .input,
 form textarea{
     display: inline-block;
     width:100%;
-    line-height: 50px;
     min-height:50px;
-    padding:0 15px;
+    padding:15px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size:15px;
+    line-height:18px;
     font-weight: 500;
     color:#333;
     border:2px solid #eee;
@@ -414,6 +414,7 @@ form .input::placeholder {
     height:100%;
 }
 .bookReview-list > li {
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: top;
@@ -498,4 +499,11 @@ form .input::placeholder {
 }
 .chat-plus-btn:hover > span {
     display: block;
+}
+.select2-dropdown {
+    border:1px solid #999 !important;
+    border-top:0 !important;
+}
+.select2-search--dropdown {
+    padding:10px !important;
 }

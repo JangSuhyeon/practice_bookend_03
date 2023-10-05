@@ -46,13 +46,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .loginPage("/login/page").permitAll()
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/", true).permitAll()
+                )
+                .oauth2Login(oauth2Login ->
+                        oauth2Login
+                                .userInfoEndpoint(userInfo ->
+                                        userInfo.userService(customOAuth2UserService)
+                                )
                 );
-//                .oauth2Login(oauth2Login ->
-//                        oauth2Login
-//                                .userInfoEndpoint(userInfo ->
-//                                        userInfo.userService(customOAuth2UserService)
-//                                )
-//                );
     }
 
     @Bean
