@@ -21,18 +21,13 @@
 		<figure class="login-book-icon"><img src="/images/login_book_icon.png"></figure>		<h2 class="login-title">Hey, hello</h2>
 		<p class="login-info-1">Enter your credentials</p>
 		<a class="login-btn login-google" href="/oauth2/authorization/google"><img src="/images/login_google.png"><span>Sign in with Google</span></a>
-
-		<!--Todo Guest Login 클릭 시 Post /login/guest 요청-->
 		<a class="login-btn login-guest" href="javascript:void(0);" onclick="guestLogin()">Guest Login</span></a>
 	</div>
 </div>
-<div th:if="${param.error}">
-	Invalid username and password.</div>
-<div th:if="${param.logout}">
-	You have been logged out.</div>
-<form id="guestLoginFrm" method="post" action="/login">
-	<input type="text" name="username" >
-	<input type="text" name="password" >
+
+<form id="guestLoginFrm" method="post" th:action="@{/login}" style="display: none">
+	<input type="text" name="username">
+	<input type="text" name="password" value="test010">
 	<button type="submit">클릭</button>
 </form>
 
@@ -47,32 +42,7 @@
 			success:function (res) {
 				console.log(res);
 				$('input[name="username"]').val(res.username);
-				$('input[name="password"]').val(res.password);
-				// $('#guestLoginFrm').submit();
-				// // 서버에서 받은 사용자 정보를 사용하여 로그인 시도
-				// var username = res.username; // 사용자명
-				// var password = res.password; // 비밀번호
-				//
-				// var form = document.createElement("form");
-				// form.setAttribute("method", "POST");
-				// form.setAttribute("action", "/login");
-				//
-				// // 사용자명과 비밀번호를 숨겨진 필드로 추가
-				// var hiddenInput1 = document.createElement("input");
-				// hiddenInput1.setAttribute("type", "hidden");
-				// hiddenInput1.setAttribute("name", "username");
-				// hiddenInput1.setAttribute("value", username);
-				//
-				// var hiddenInput2 = document.createElement("input");
-				// hiddenInput2.setAttribute("type", "hidden");
-				// hiddenInput2.setAttribute("name", "password");
-				// hiddenInput2.setAttribute("value", password);
-				//
-				// form.appendChild(hiddenInput1);
-				// form.appendChild(hiddenInput2);
-				// console.log(form);
-				// document.body.appendChild(form);
-				// form.submit();
+				$('#guestLoginFrm').submit();
 			},
 			error:function () {
 				console.log('error');

@@ -43,8 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
-                    .defaultSuccessUrl("/", true)
-                    .permitAll()
+                        .loginPage("/login/page").permitAll()
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/", true).permitAll()
                 );
 //                .oauth2Login(oauth2Login ->
 //                        oauth2Login

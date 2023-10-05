@@ -20,8 +20,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-@Slf4j
-public class LoginService implements UserDetailsService {
+public class LoginService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -45,18 +44,5 @@ public class LoginService implements UserDetailsService {
         userRepository.save(user);
 
         return UserResponseDto.toDto(user); // entity -> dto
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String insertedUserId) throws UsernameNotFoundException {
-        Optional<User> findOne = userRepository.findByUsername(insertedUserId);
-        log.info("findOne : {}",findOne);
-        User newMember = findOne.orElseThrow(() -> new UsernameNotFoundException("등록되지 않은 ID입니다."));
-
-        return org.springframework.security.core.userdetails.User.builder()
-                .username(newMember.getUsername())
-                .password(newMember.getPassword())
-                .roles(newMember.getRole().getTitle())
-                .build();
     }
 }

@@ -33,12 +33,9 @@ public class LoginController {
     // 게스트 로그인
     @GetMapping("/guest/join")
     public ResponseEntity<UserResponseDto> guestLogin() throws UnknownHostException {
-        System.out.println("***게스트 로그인 Controller START***");
 
         // User에 로그인 기록 남기기
         UserResponseDto user = loginService.guestSave();
-
-        // 게스트 로그인인
 
        return ResponseEntity.ok(user);
     }
