@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,12 +24,23 @@
 
         <!-- sidebar -->
         <div class="sidebar-container">
-            <div class="siderbar-userinfo">
-                <figure><img src="/images/sample_profile.jpg"></figure>
+            <div sec:authorize="hasRole('ROLE_USER')" class="siderbar-userinfo">
+                <figure><img th:src="${#authentication.principal.attributes['picture']}" alt="google picture"/></figure>
                 <p class="sidebar-name-container">
-                    <span class="sidebar-name">SpongeBob</span>
-                    <span class="sidebar-role">SquarePants</span>
+                    <span class="sidebar-name" th:text="${#authentication.principal.attributes['name']}"></span>
+                    <span class="sidebar-role">일반 사용자</span>
                 </p>
+            </div>
+            <div th:with="authorities=${#authentication.getAuthorities()}">
+                <div th:each="authority : ${authorities}">
+                    <div th:if="${authority.authority eq 'GUEST'}" class="siderbar-userinfo">
+                        <figure><img th:src="@{/images/sample_profile.jpg}" alt="guest picture"/></figure>
+                        <p class="sidebar-name-container">
+                            <span class="sidebar-name" th:text="${#authentication.name}"></span>
+                            <span class="sidebar-role">손님</span>
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <a class="gra-btn" href="/book/write">독후감 쓰기</a>

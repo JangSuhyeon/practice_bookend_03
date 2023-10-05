@@ -19,12 +19,13 @@ $(function () {
             processResults: function (data) {
                 return {
                     results: $.map(data.item, function (item) {
-                        var option = item.title; // 도서명
+                        var option = '<div class="select2-wrapper"><p class="select2-title">' + item.title + '</p>'; // 도서명
 
                         // 이미지 경로가 있는 경우 이미지를 추가
                         if (item.cover) {
-                            option = option + '<img src="' + item.cover + '" alt="Book Image" class="book-image"/>';
+                            option += '<img src="' + item.cover + '" alt="Book Image" class="book-image"/>';
                         }
+                        option += '</div>';
 
                         return {
                             text: option,
@@ -43,6 +44,17 @@ $(function () {
         minimumInputLength: 1,
         escapeMarkup: function (markup) {
             return markup; // 템플릿을 HTML 이스케이프 처리하지 않도록 설정
+        },
+        language: {
+            inputTooShort: function () {
+                return "도서명을 검색해주세요:)";
+            },
+            noResults: function () {
+                return "검색된 도서가 없습니다 :(";
+            },
+            searching: function () {
+                return "검색 중입니다;)";
+            }
         }
     }).on('select2:select', function (e) {
         // 선택한 옵션의 이미지를 표시할 요소에 이미지 업데이트
