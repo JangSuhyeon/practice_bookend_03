@@ -1,67 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookend</title>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/defaultLayout}"
+      layout:fragment="Content"
+>
+    <head>
+	    <!-- inline JS 영역-->
+        <script src="/js/reviewDetail.js"></script>
+	</head>
 
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-    <!-- Select2 라이브러리 로드 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-</head>
-<body>
-<div class="container">
-    <div class="wrapper">
-
-        <!-- sidebar -->
-        <div class="sidebar-container">
-            <div class="siderbar-userinfo">
-                <figure><img src="/images/sample_profile.jpg"></figure>
-                <p class="sidebar-name-container">
-                    <span class="sidebar-name">SpongeBob</span>
-                    <span class="sidebar-role">SquarePants</span>
-                </p>
-            </div>
-
-            <a class="gra-btn" href="/book/write">독후감 쓰기</a>
-            <a class="siderbar-btn siderbar-btn-1" href="/"><figure><img src="/images/sidebar_list_icon.png"></figure>독후감 목록</a>
-
-            <ul class="sidebar-chat-container">
-                <li><a class="siderbar-btn siderbar-btn-2"  href="">
-                    <figure><img src="/images/sample_profile.jpg"></figure>
-                    <div class="sidebar-title">도시와 그 불확실한 벽</div>
-                    <div class="sidebar-cnt-container">
-                        <div class="sidebar-cnt">5</div>
-                        <div class="sidebar-date">14:27</div>
-                    </div>
-                </a></li>
-                <li><a class="siderbar-btn siderbar-btn-2"  href="">
-                    <figure><img src="/images/sample_profile.jpg"></figure>
-                    <div class="sidebar-title">퓨처 셀프</div>
-                    <div class="sidebar-cnt-container">
-                        <div class="sidebar-cnt">5</div>
-                        <div class="sidebar-date">9월 12일</div>
-                    </div>
-                </a></li>
-                <li><a class="siderbar-btn siderbar-btn-2"  href="">
-                    <figure><img src="/images/sample_profile.jpg"></figure>
-                    <div class="sidebar-title">디케의 눈물</div>
-                    <div class="sidebar-cnt-container">
-                        <div class="sidebar-date">9월 12일</div>
-                    </div>
-                </a></li>
-            </ul>
-        </div>
-
+	<body>
         <div class="main-contents">
             <form>
                 <input type="hidden" class="score" th:value="${review.score}">
@@ -115,14 +64,12 @@
 <!--                </div>-->
             </form>
         </div>
-    </div>
-</div>
 
-<!--채팅 참가하기 버튼-->
-<a class="chat-plus-btn">
-    <span th:text="${review.book.title}"></span>
-    채팅 참가하기
-</a>
-<script src="/js/reviewDetail.js"></script>
-</body>
+        <!--채팅 참가하기 버튼-->
+        <a class="chat-plus-btn">
+            <span th:text="${review.book.title}"></span>
+            채팅 참가하기
+        </a>
+
+    </body>
 </html>
