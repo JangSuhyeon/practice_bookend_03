@@ -4,11 +4,13 @@ import com.bookend.book.domain.Book;
 import com.bookend.book.domain.BookReview;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.text.SimpleDateFormat;
 
 @Builder
 @Getter
+@ToString
 public class BookReviewResponseDto {
 
     private Book book;
@@ -16,6 +18,7 @@ public class BookReviewResponseDto {
     private String shortReview;
     private String longReview;
     private int score;
+    private Boolean openYn;
     private String regDt;
 
     public static BookReviewResponseDto toDto(BookReview bookReview) {
@@ -26,6 +29,7 @@ public class BookReviewResponseDto {
                 .shortReview(bookReview.getShortReview())
                 .longReview(bookReview.getLongReview())
                 .score(bookReview.getScore())
+                .openYn(bookReview.getOpenYn())
                 .regDt(sdf.format(bookReview.getRegDt()))
                 .build();
     }

@@ -27,7 +27,7 @@
                                 <p class="input" th:text="${review.book.title}"></p>
                             </div>
                         </div>
-                        <div class="row row-2" style="margin-bottom: 0;">
+                        <div class="row row-3" style="margin-bottom: 0;">
                             <div class="col">
                                 <h2 class="input title">작가</h2>
                                 <p class="input" th:text="${review.book.author}"></p>
@@ -35,6 +35,13 @@
                             <div class="col">
                                 <h2 class="input title">출판사</h2>
                                 <p class="input" th:text="${review.book.publisher}"></p>
+                            </div>
+                            <div class="col">
+                                <h2 class="input title">공개여부</h2>
+                                <div class="list-openYn" style="display: flex; align-items: center; flex:auto; ">
+                                    <p th:if="${review.openYn eq true}" class="list-open-y" style="line-height: 52px;font-size: 15px;font-weight: 500;">공개</p>
+                                    <p th:if="${review.openYn eq false}" class="list-open-n" style="line-height: 52px;font-size: 15px;color:#333;font-weight: 500;">비공개</p>
+                                </div>
                             </div>
                         </div>
                     </div>

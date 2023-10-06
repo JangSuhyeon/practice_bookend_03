@@ -23,7 +23,11 @@ public class BookReview {
     @Column(nullable = false)
     private Long bookId;
 
+    @Column(nullable = false)
+    private Long userId;
+
     @Column
+    private Boolean openYn;
     private int score;
     private String shortReview;
     private String longReview;
@@ -41,6 +45,8 @@ public class BookReview {
     public static BookReview toEntity(BookRequestDto bookRequestDto) {
         return BookReview.builder()
                 .bookId(bookRequestDto.getBookId())
+                .userId(bookRequestDto.getUserId())
+                .openYn(bookRequestDto.getOpenYn())
                 .score(bookRequestDto.getScore())
                 .shortReview(bookRequestDto.getShortReview())
                 .longReview(bookRequestDto.getLongReview())

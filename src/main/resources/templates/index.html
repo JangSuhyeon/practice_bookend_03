@@ -19,11 +19,17 @@
                     <div class="list-info">
                         <div class="list-title-container">
                             <p class="list-title" th:text="${bookReview.book.title}"></p>
-                            <p class="list-score" ></p>
+                            <div class="list-openYn">
+                                <p th:if="${bookReview.openYn eq true}" class="list-open-y">공개</p>
+                                <p th:if="${bookReview.openYn eq false}" class="list-open-n">비공개</p>
+                            </div>
                         </div>
                         <div class="list-con-container">
                             <p class="list-shortReview" th:text="${bookReview.shortReview}"></p>
-                            <p class="list-date" th:text="${bookReview.regDt}"></p>
+                            <div class="list-sd">
+                                <p class="list-score" ></p>
+                                <p class="list-date" th:text="${bookReview.regDt}"></p>
+                            </div>
                         </div>
                     </div>
                 </li>

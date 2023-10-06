@@ -100,6 +100,7 @@ $(function () {
         var title = $('#title').val().trim();
         var author = $('#author').text().trim();
         var publisher = $('#publisher').text().trim();
+        var openYn = $('input[name="openYn"]:checked').val();
         var cover = $('#cover').attr('src');
         var shortReview = $('#shortReview').val().trim();
         var longReview = $('#longReview').val().trim();
@@ -116,6 +117,7 @@ $(function () {
                'title' : title,
                'author' : author,
                'publisher' : publisher,
+               'openYn' : openYn,
                'cover' : cover,
                'score' : heartCnt,
                'shortReview' : shortReview,

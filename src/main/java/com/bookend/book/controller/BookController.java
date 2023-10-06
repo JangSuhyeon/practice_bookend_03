@@ -3,15 +3,24 @@ package com.bookend.book.controller;
 import com.bookend.book.domain.dto.BookRequestDto;
 import com.bookend.book.domain.dto.BookReviewResponseDto;
 import com.bookend.book.service.BookService;
+import com.bookend.security.PrincipalDetails;
+import com.bookend.security.dto.LoginUser;
+import com.bookend.security.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -55,10 +64,10 @@ public class BookController {
 
     // 독후감 저장
     @PostMapping(value = "/write")
-    public ResponseEntity<String> saveBook(@RequestBody BookRequestDto bookRequestDto) {
+    public ResponseEntity<String> saveBook(@RequestBody BookRequestDto bookRequestDto, @AuthenticationPrincipal Object principalUser, @LoginUser SessionUser googleUser) {
 
         // 저장
-        bookService.save(bookRequestDto);
+        bookService.save(bookRequestDto, principalUser, googleUser);
 
         return ResponseEntity.ok("성공");
     }
