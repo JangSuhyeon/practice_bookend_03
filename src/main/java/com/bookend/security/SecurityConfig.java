@@ -36,16 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable() // ajax POST 호출을 위함
-                .cors().disable()
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .antMatchers("/css/**", "/images/**", "/js/**", "/login/guest/join", "/login").permitAll()
+                                .antMatchers("/css/**", "/images/**", "/js/**", "/login/guest/join").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
-                        .loginPage("/login/page").permitAll()
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/", true).permitAll()
+                        .loginPage("/login/page").permitAll()   // 커스텀 로그인 페이지로 이동
+                        .loginProcessingUrl("/login")   // 게스트 로그인(form) 시 필요
                 )
                 .oauth2Login(oauth2Login ->
                         oauth2Login

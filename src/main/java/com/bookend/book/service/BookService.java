@@ -59,15 +59,13 @@ public class BookService {
 
     // 독후감 목록 조회
     public List<BookReviewResponseDto> findAll(Object principalUser, SessionUser user) {
-
         Long id;
-        if (principalUser instanceof OAuth2User) { // 구글 계정
-            id = user.getId();
-        } else if (principalUser instanceof UserDetails) { // 게스트 계정
+        if (principalUser instanceof UserDetails) { // 게스트 계정
             id = ((PrincipalDetails) principalUser).getUser().getId();
-        } else {
-            id = null; // Todo 에러 예외 처리
+        }else { // 구글 계정
+            id = user.getId();
         }
+        System.out.println("id : " + id);
 
         List<BookReview> bookList = bookReviewRepository.findAllByUserId(id);
 
