@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 @Builder
 @Getter
 @ToString
-public class BookReviewResponseDto {
+public class ReviewRequestDto {
 
     private Book book;
     private Long reviewId;
@@ -23,9 +23,9 @@ public class BookReviewResponseDto {
     private Boolean openYn;
     private String regDt;
 
-    public static BookReviewResponseDto toDto(BookReview bookReview) {
+    public static ReviewRequestDto toDto(BookReview bookReview) {
         SimpleDateFormat sdf = new SimpleDateFormat("yy년 M월 dd일");
-        return BookReviewResponseDto.builder()
+        return ReviewRequestDto.builder()
                 .book(bookReview.getBook())
                 .reviewId(bookReview.getReviewId())
                 .userId(bookReview.getUserId())

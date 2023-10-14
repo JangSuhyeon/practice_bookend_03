@@ -2,6 +2,7 @@ package com.bookend.book.controller;
 
 import com.bookend.book.domain.dto.BookRequestDto;
 import com.bookend.book.domain.dto.BookReviewResponseDto;
+import com.bookend.book.domain.dto.ReviewRequestDto;
 import com.bookend.book.service.BookService;
 import com.bookend.security.PrincipalDetails;
 import com.bookend.security.dto.LoginUser;
@@ -74,13 +75,38 @@ public class BookController {
 
     // 독후감 상세 화면으로
     @GetMapping("/{reviewId}")
-    public String goToBookWrite(@PathVariable("reviewId") Long reviewId, Model model) {
+    public String goToBookWrite(@PathVariable("reviewId") Long reviewId,
+                                @LoginUser SessionUser user,
+                                @AuthenticationPrincipal Object principalUser,
+                                Model model) {
+
+        // 현재 로그인한 이용자의 userId (수정 버튼 노출 여부)
+        Long id;
+        if (principalUser instanceof UserDetails) { // 게스트 계정
+            id = ((PrincipalDetails) principalUser).getUser().getId();
+        }else { // 구글 계정
+            id = user.getId();
+        }
+        model.addAttribute("loginUserId", id);
 
         // 독후감 상세 정보 조회
         BookReviewResponseDto review = bookService.findByReviewId(reviewId);
         model.addAttribute("review", review);
 
         return "book/detail";
+    }
+
+    @GetMapping("/modify/{reviewId}")
+    public String modifyReview(@PathVariable Long reviewId, Model model) {
+        BookReviewResponseDto review = bookService.findByReviewId(reviewId);
+        model.addAttribute("review", review);
+        return "book/modify";
+    }
+
+    @PostMapping("/update")
+    public String updateReview(BookRequestDto review) {
+        bookService.saveReview(review);
+        return "redirect:/book/" + review.getReviewId();
     }
 
 }

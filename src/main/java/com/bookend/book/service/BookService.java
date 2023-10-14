@@ -4,8 +4,11 @@ import com.bookend.book.domain.Book;
 import com.bookend.book.domain.BookReview;
 import com.bookend.book.domain.dto.BookRequestDto;
 import com.bookend.book.domain.dto.BookReviewResponseDto;
+import com.bookend.book.domain.dto.ReviewRequestDto;
 import com.bookend.book.repository.BookRepository;
 import com.bookend.book.repository.BookReviewRepository;
+import com.bookend.login.domain.entity.User;
+import com.bookend.login.repository.UserRepository;
 import com.bookend.security.PrincipalDetails;
 import com.bookend.security.dto.LoginUser;
 import com.bookend.security.dto.SessionUser;
@@ -26,6 +29,7 @@ public class BookService {
 
     private final BookRepository bookRepository;
     private final BookReviewRepository bookReviewRepository;
+    private final UserRepository userRepository;
 
     // 독후감 저장
     public void save(BookRequestDto bookRequestDto, Object principalUser, SessionUser guestUser) {
@@ -81,8 +85,20 @@ public class BookService {
     // 독후감 상세 정보 조회
     public BookReviewResponseDto findByReviewId(Long reviewId) {
 
-        BookReview bookReview = bookReviewRepository.findByReviewId(reviewId);
+        BookReview bookReview = bookReviewRepository.findByReviewId(reviewId);  // 리뷰 가져오기
+        String userNm = userRepository.findById(bookReview.getUserId()).map(User::getName).orElse(null);    // 리뷰 작성자 이름 가져오기
+        BookReviewResponseDto bookReviewResponseDto = BookReviewResponseDto.toDto(bookReview);  // Entity - > DTO
+        bookReviewResponseDto.setUserNm(userNm);    // DTO에 리뷰 작성자 이름 넣기
 
-        return BookReviewResponseDto.toDto(bookReview);
+        return bookReviewResponseDto;
+    }
+
+    // 독후감 수정
+    public void saveReview(BookRequestDto review) {
+
+        // DTO -> Entity
+        BookReview bookReview = BookReview.toEntity(review);
+        bookReviewRepository.save(bookReview);
+
     }
 }

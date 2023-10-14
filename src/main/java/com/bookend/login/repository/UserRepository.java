@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username); // 기존 가입 여부 확인을 위함
 
     int countByRole(Role role);
+
+    Optional<User> findById(Long id);
 }

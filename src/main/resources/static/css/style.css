@@ -403,9 +403,12 @@ form textarea {
     text-align: right;
     margin-top:auto;
 }
-.btn-controller button {
+.btn-controller button,
+.btn-controller a{
+    cursor: pointer;
     width:250px;
     height:50px;
+    line-height: 50px;
     border-radius: 5px;
     border: 0;
     margin:30px 0 0;
@@ -418,6 +421,18 @@ form .input::placeholder {
     color:#999;
     font-weight: 400;
     font-family: 'Noto Sans KR', sans-serif;
+}
+#openYn {
+    cursor: pointer;
+    line-height: 52px !important;
+    font-size: 15px !important;
+}
+.list-open-y {
+    font-weight: 500;
+}
+.list-open-n {
+    color:#333;
+    font-weight: 500;
 }
 
 

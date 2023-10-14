@@ -19,6 +19,8 @@ public class BookRequestDto {
 
     private Long userId;
 
+    private Long reviewId;
+
     public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
