@@ -89,11 +89,12 @@ public class BookReviewService {
     }
 
     // 독후감 수정
-    public void updateReview(BookReviewRequestDto review) {
+    public void updateReview(BookReviewRequestDto modifiedReview) {
 
-        // DTO -> Entity
-        Review bookReview = Review.toEntity(review);
-        reviewRepository.save(bookReview);
+        Review review = reviewRepository.findByReviewId(modifiedReview.getReviewId());  // 리뷰 가져오기
+        review.modify(modifiedReview);  // 데이터 업데이트
+
+        reviewRepository.save(review);
 
     }
 }

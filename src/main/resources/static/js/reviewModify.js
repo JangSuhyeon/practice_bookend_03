@@ -15,12 +15,31 @@ function drawStars(score, container) {
     }
 }
 
+// 취향도 선택
+$(document).on('click', '.heart label', function() {
+    // 현재 클릭한 레이블을 포함한 모든 레이블
+    var labels = $(this).prevAll('label').addBack();
+    // 클릭한 레이블부터 가장 왼쪽 레이블까지의 텍스트를 ❤️로 변경
+    labels.each(function() {
+        $(this).find('span').text('❤️');
+        $(this).find('input[type="checkbox"]').prop('checked', true);
+    });
+
+    // 클릭한 레이블 다음의 레이블의 텍스트를 🤍로 변경
+    var labels2= $(this).nextAll('label');
+    labels2.each(function() {
+        $(this).find('span').text('🤍');
+        $(this).find('input[type="checkbox"]').prop('checked', false);
+    });
+});
+
 $(function () {
 
     // 현재의 공개 상태 표시
     var prevOpenYn = $('#prevOpenYn').val();
     var openYn = $('#openYn');
-    if (prevOpenYn) {
+    var openYnInput = $('input[name="openYn"]');
+    if (prevOpenYn === "true") {
         openYn.addClass('list-open-y');
         openYn.text("공개");
     } else {
@@ -35,9 +54,11 @@ $(function () {
         if (openYnText === '공개') {
             openYn.addClass('list-open-n');
             openYn.text("비공개");
+            openYnInput.val(false);
         } else {
             openYn.addClass('list-open-y');
             openYn.text("공개");
+            openYnInput.val(true);
         }
     });
 
@@ -45,58 +66,37 @@ $(function () {
     var score = parseInt($('.score').val()); // 점수 가져오기
     drawStars(score, $('.heart'));
 
-    // 취향도 선택
-    $('.heart label').click(function() {
-        // 현재 클릭한 레이블을 포함한 모든 레이블
-        var labels = $(this).prevAll('label').addBack();
-
-        // 클릭한 레이블부터 가장 왼쪽 레이블까지의 텍스트를 ❤️로 변경
-        labels.find('span').text('❤️');
-
-        // 클릭한 레이블 다음의 레이블의 텍스트를 🤍로 변경
-        labels.nextAll('label').find('span').text('🤍');
-    });
-
     // 독후감 저장
-    $('#book-save-btn').click(function () {
+    $('#book-update-btn').click(function () {
 
         // 취향도 구하기
        var checkedCheckboxes = $(".heart input[type='checkbox']:checked");
        var heartCnt = checkedCheckboxes.length;
 
        // validate
-        var isbn = $('#searchBook').val();
-        var title = $('#title').val().trim();
-        var author = $('#author').text().trim();
-        var publisher = $('#publisher').text().trim();
-        var openYn = $('input[name="openYn"]:checked').val();
-        var cover = $('#cover').attr('src');
+        var reviewId = $('input[name="reviewId"]').val();
+        var openYn = $('input[name="openYn"]').val();
         var shortReview = $('#shortReview').val().trim();
         var longReview = $('#longReview').val().trim();
 
-        if (!isbn) {
-            alert('도서를 선택해주세요.');
-        } else if (!shortReview){
+        if (!shortReview){
             alert('한줄평을 작성해주세요.');
         } else if (shortReview.length > 130) {
             alert('한줄평을 130글자 미만으로 작성해주세요'); // Todo 실시간 info
         } else {
            var requestParam = {
-               'isbn' : isbn,
-               'title' : title,
-               'author' : author,
-               'publisher' : publisher,
+               'reviewId': reviewId,
                'openYn' : openYn,
-               'cover' : cover,
                'score' : heartCnt,
                'shortReview' : shortReview,
                'longReview' : longReview
            }
+           console.log(openYn);
 
             // 저장
             $.ajax({
                 type:'POST',
-                url:'/review/write',
+                url:'/review/update',
                 data:JSON.stringify(requestParam),
                 contentType: 'application/json',
                 success:function (res) {

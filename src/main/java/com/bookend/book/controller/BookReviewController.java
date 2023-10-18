@@ -101,7 +101,8 @@ public class BookReviewController {
     }
 
     @PostMapping("/update")
-    public String updateReview(BookReviewRequestDto review) {
+    public String updateReview(@RequestBody BookReviewRequestDto review) {
+        System.out.println("review : " + review.toString());
         bookReviewService.updateReview(review);
         return "redirect:/review/" + review.getReviewId();
     }

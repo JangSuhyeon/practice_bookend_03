@@ -59,4 +59,12 @@ public class Review {
         regDt = new Date();
     }
 
+    public void modify(BookReviewRequestDto modifiedReview) {
+        openYn = modifiedReview.getOpenYn();
+        score = modifiedReview.getScore();
+        shortReview = modifiedReview.getShortReview();
+        longReview = modifiedReview.getLongReview();
+        modDt = new Date();
+    }
+
 }

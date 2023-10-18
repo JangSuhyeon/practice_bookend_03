@@ -426,6 +426,7 @@ form .input::placeholder {
     cursor: pointer;
     line-height: 52px !important;
     font-size: 15px !important;
+    color:#333;
 }
 .list-open-y {
     font-weight: 500;
@@ -506,6 +507,7 @@ form .input::placeholder {
 }
 .list-openYn > p.list-open-y {
     background-color: #5AA4FB;
+    color:#fff !important;
 }
 .list-openYn > p.list-open-n {
     background-color: #ddd;
@@ -598,4 +600,5 @@ form .input::placeholder {
 }
 .review-item {
     display: flex;
+    cursor: pointer;
 }

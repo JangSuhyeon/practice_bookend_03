@@ -1,8 +1,10 @@
 package com.bookend.book.domain.dto;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class BookReviewRequestDto {
 
     private String isbn;

@@ -43,6 +43,7 @@
                                 <h2 class="input title">공개여부</h2>
                                 <!--클릭할때마다 공개/비공개 toggle-->
                                 <div class="list-openYn" style="display: flex; align-items: center; flex:auto; ">
+                                    <input name="openYn" type="hidden" th:value="${review.openYn}">
                                     <p id="openYn"></p>
                                 </div>
                             </div>
@@ -54,19 +55,18 @@
                 </div>
                 <div class="row row-2 row-15">
                     <div class="col">
-                        <!--Todo 취향도 선택 가능하게 수정-->
                         <h2 class="input title">취향도</h2>
                         <div class="heart"></div>
                     </div>
                     <div class="col mb-15">
                         <h2 class="input title">한줄평</h2>
-                        <input type="text" class="input" th:value="${review.shortReview}"/>
+                        <input type="text" id="shortReview" class="input" th:value="${review.shortReview}"/>
                     </div>
                 </div>
                 <div class="row row-textarea">
                     <div class="col">
                         <h2 class="input title">감상문</h2>
-                        <textarea class="textarea" th:text="${review.longReview}"></textarea>
+                        <textarea id="longReview" class="textarea" th:text="${review.longReview}"></textarea>
                     </div>
                 </div>
 
@@ -75,12 +75,6 @@
                 </div>
             </form>
         </div>
-
-        <!--채팅 참가하기 버튼-->
-        <a class="chat-plus-btn">
-            <span th:text="${review.book.title}"></span>
-            채팅 참가하기
-        </a>
 
     </body>
 </html>
