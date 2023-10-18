@@ -1,15 +1,10 @@
 package com.bookend.security;
 
-import com.bookend.login.domain.Role;
 import com.bookend.login.domain.entity.User;
 import com.bookend.login.repository.UserRepository;
-import com.bookend.security.dto.OAuthAttributes;
-import com.bookend.security.dto.SessionUser;
+import com.bookend.login.domain.SessionUser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
@@ -22,8 +17,6 @@ import javax.servlet.http.HttpSession;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * OAuth2 로그인 이후 반환된 사용자 정보를 처리
@@ -62,6 +55,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         System.out.println("attributes : " + attributes);
 
         User user = saveOrUpdate(attributes);
+        httpSession.invalidate(); // 현재 세션을 무효화 시킴
         httpSession.setAttribute("user", new SessionUser(user)); // 세션에 사용자 정보 저장
 
         // DefaultOAuth2User 객체를 반환함으로써, OAuth2 로그인 기능을 구현한 웹 애플리케이션은 권한 부여, 사용자 정보 제공, 세션 관리 등의 기능을 제공할 수 있음.

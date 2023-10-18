@@ -3,7 +3,7 @@ package com.bookend.book.domain.dto;
 import lombok.Getter;
 
 @Getter
-public class BookRequestDto {
+public class BookReviewRequestDto {
 
     private String isbn;
     private String title;

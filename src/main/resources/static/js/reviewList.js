@@ -24,7 +24,7 @@ $(function () {
     // li 요소 클릭 시 독후감 상세 화면으로 이동
     $('.review-item').click(function() {
         var reviewId = $(this).data('review-id');   // 독후감 PK
-        window.location.href = '/book/' + reviewId;
+        window.location.href = '/review/' + reviewId;
     });
 
 })

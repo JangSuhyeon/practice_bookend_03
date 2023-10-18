@@ -1,19 +1,15 @@
 package com.bookend.login.controller;
 
-import com.bookend.login.LoginService.LoginService;
-import com.bookend.login.domain.UserResponseDto;
-import com.bookend.login.domain.entity.User;
-import com.bookend.security.CustomOAuth2UserService;
-import com.bookend.security.dto.LoginUser;
-import com.bookend.security.dto.SessionUser;
+import com.bookend.login.service.LoginService;
+import com.bookend.login.domain.dto.UserResponseDto;
+import com.bookend.security.LoginUser;
+import com.bookend.login.domain.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.net.UnknownHostException;
 

@@ -1,4 +1,4 @@
-package com.bookend.security.dto;
+package com.bookend.security;
 
 import com.bookend.login.domain.Role;
 import com.bookend.login.domain.entity.User;

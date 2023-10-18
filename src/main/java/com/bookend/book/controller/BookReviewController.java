@@ -1,49 +1,44 @@
 package com.bookend.book.controller;
 
-import com.bookend.book.domain.dto.BookRequestDto;
+import com.bookend.book.domain.dto.BookReviewRequestDto;
 import com.bookend.book.domain.dto.BookReviewResponseDto;
-import com.bookend.book.domain.dto.ReviewRequestDto;
-import com.bookend.book.service.BookService;
+import com.bookend.book.service.BookReviewService;
 import com.bookend.security.PrincipalDetails;
-import com.bookend.security.dto.LoginUser;
-import com.bookend.security.dto.SessionUser;
+import com.bookend.security.LoginUser;
+import com.bookend.login.domain.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/book")
-public class BookController {
+@RequestMapping("/review")
+public class BookReviewController {
 
     @Value("${aladin.url}")
     private String ALADIN_URL;
 
-    private final BookService bookService;
+    private final BookReviewService bookReviewService;
 
     // 독후감 작성 화면으로
     @GetMapping("/write")
-    public String goToBookWrite() {
-        return "book/write";
+    public String goToReviewWrite() {
+        return "review/write";
     }
 
     // 알라딘 Open API를 이용하여 도서 검색
-    @PostMapping(value = "/search", produces = "application/json")
+    @PostMapping(value = "/book/search", produces = "application/json")
     public ResponseEntity<String> searchBooks(@RequestBody HashMap<String, Object> search) {
         RestTemplate restTemplate = new RestTemplate();
 
@@ -65,20 +60,22 @@ public class BookController {
 
     // 독후감 저장
     @PostMapping(value = "/write")
-    public ResponseEntity<String> saveBook(@RequestBody BookRequestDto bookRequestDto, @AuthenticationPrincipal Object principalUser, @LoginUser SessionUser googleUser) {
+    public ResponseEntity<String> saveReview(@RequestBody BookReviewRequestDto bookReviewRequestDto,
+                                             @AuthenticationPrincipal Object principalUser,
+                                             @LoginUser SessionUser googleUser) {
 
         // 저장
-        bookService.save(bookRequestDto, principalUser, googleUser);
+        bookReviewService.saveBookReview(bookReviewRequestDto, principalUser, googleUser);
 
         return ResponseEntity.ok("성공");
     }
 
     // 독후감 상세 화면으로
     @GetMapping("/{reviewId}")
-    public String goToBookWrite(@PathVariable("reviewId") Long reviewId,
-                                @LoginUser SessionUser user,
-                                @AuthenticationPrincipal Object principalUser,
-                                Model model) {
+    public String goToReviewDetail(@PathVariable("reviewId") Long reviewId,
+                                   @LoginUser SessionUser user,
+                                   @AuthenticationPrincipal Object principalUser,
+                                   Model model) {
 
         // 현재 로그인한 이용자의 userId (수정 버튼 노출 여부)
         Long id;
@@ -90,23 +87,23 @@ public class BookController {
         model.addAttribute("loginUserId", id);
 
         // 독후감 상세 정보 조회
-        BookReviewResponseDto review = bookService.findByReviewId(reviewId);
+        BookReviewResponseDto review = bookReviewService.findReviewByReviewId(reviewId);
         model.addAttribute("review", review);
 
-        return "book/detail";
+        return "review/detail";
     }
 
     @GetMapping("/modify/{reviewId}")
-    public String modifyReview(@PathVariable Long reviewId, Model model) {
-        BookReviewResponseDto review = bookService.findByReviewId(reviewId);
+    public String goToReviewModify(@PathVariable Long reviewId, Model model) {
+        BookReviewResponseDto review = bookReviewService.findReviewByReviewId(reviewId);
         model.addAttribute("review", review);
-        return "book/modify";
+        return "review/modify";
     }
 
     @PostMapping("/update")
-    public String updateReview(BookRequestDto review) {
-        bookService.saveReview(review);
-        return "redirect:/book/" + review.getReviewId();
+    public String updateReview(BookReviewRequestDto review) {
+        bookReviewService.updateReview(review);
+        return "redirect:/review/" + review.getReviewId();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.bookend.login.domain;
+package com.bookend.login.domain.dto;
 
 import com.bookend.login.domain.entity.User;
 import lombok.Builder;

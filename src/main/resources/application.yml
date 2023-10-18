@@ -14,3 +14,6 @@ spring:
 
 aladin:
   url: http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbihj00431455001
+
+server:
+  port: 8080

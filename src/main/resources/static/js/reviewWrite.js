@@ -8,7 +8,7 @@ $(function () {
     $('#searchBook').select2({
         ajax: {
             type:'POST',
-            url:'/book/search',
+            url:'/review/book/search',
             dataType: 'json',
             delay: 250,
             contentType : 'application/json',
@@ -127,7 +127,7 @@ $(function () {
             // 저장
             $.ajax({
                 type:'POST',
-                url:'/book/write',
+                url:'/review/write',
                 data:JSON.stringify(requestParam),
                 contentType: 'application/json',
                 success:function (res) {

@@ -1,7 +1,6 @@
 package com.bookend.security;
 
-import com.bookend.security.dto.LoginUser;
-import com.bookend.security.dto.SessionUser;
+import com.bookend.login.domain.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;

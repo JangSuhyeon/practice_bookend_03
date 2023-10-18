@@ -12,19 +12,15 @@
                 <span class="sidebar-role">일반 사용자</span>
             </p>
         </div>
-        <div th:with="authorities=${#authentication.getAuthorities()}">
-            <div th:each="authority : ${authorities}">
-                <div th:if="${authority.authority eq 'GUEST'}" class="siderbar-userinfo">
-                    <figure><img th:src="@{/images/sample_profile.jpg}" alt="guest picture"/></figure>
-                    <p class="sidebar-name-container">
-                        <span class="sidebar-name" th:text="${#authentication.name}"></span>
-                        <span class="sidebar-role">손님</span>
-                    </p>
-                </div>
-            </div>
+        <div sec:authorize="hasRole('ROLE_GUEST')" class="siderbar-userinfo">
+            <figure><img th:src="@{/images/sample_profile.jpg}" alt="guest picture"/></figure>
+            <p class="sidebar-name-container">
+                <span class="sidebar-name" th:text="${#authentication.principal.user.name}"></span>
+                <span class="sidebar-role">손님</span>
+            </p>
         </div>
 
-        <a class="gra-btn" href="/book/write">독후감 쓰기</a>
+        <a class="gra-btn" href="/review/write">독후감 쓰기</a>
         <a class="siderbar-btn siderbar-btn-1" href="/"><figure><img src="/images/sidebar_list_icon.png"></figure>독후감 목록</a>
 
         <ul class="sidebar-chat-container">

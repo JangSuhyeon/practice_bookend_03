@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 )
                 .formLogin(login -> login
                         .loginPage("/login/page").permitAll()   // 커스텀 로그인 페이지로 이동
-                        .loginProcessingUrl("/login")   // 게스트 로그인(form) 시 필요
+                        .loginProcessingUrl("/login")           // 게스트 로그인(form) 시 필요
                 )
                 .oauth2Login(oauth2Login ->
                         oauth2Login

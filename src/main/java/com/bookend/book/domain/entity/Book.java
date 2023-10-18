@@ -1,6 +1,6 @@
-package com.bookend.book.domain;
+package com.bookend.book.domain.entity;
 
-import com.bookend.book.domain.dto.BookRequestDto;
+import com.bookend.book.domain.dto.BookReviewRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,15 +31,15 @@ public class Book {
     private String cover;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<BookReview> bookReviewList = new ArrayList<>();
+    private List<Review> reviewList = new ArrayList<>();
 
-    public static Book toEntity(BookRequestDto bookRequestDto) {
+    public static Book toEntity(BookReviewRequestDto bookReviewRequestDto) {
         return Book.builder()
-                .isbn(bookRequestDto.getIsbn())
-                .title(bookRequestDto.getTitle())
-                .author(bookRequestDto.getAuthor())
-                .publisher(bookRequestDto.getPublisher())
-                .cover(bookRequestDto.getCover())
+                .isbn(bookReviewRequestDto.getIsbn())
+                .title(bookReviewRequestDto.getTitle())
+                .author(bookReviewRequestDto.getAuthor())
+                .publisher(bookReviewRequestDto.getPublisher())
+                .cover(bookReviewRequestDto.getCover())
                 .build();
     }
 

@@ -1,6 +1,6 @@
-package com.bookend.book.domain;
+package com.bookend.book.domain.entity;
 
-import com.bookend.book.domain.dto.BookRequestDto;
+import com.bookend.book.domain.dto.BookReviewRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookReview {
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,14 +42,14 @@ public class BookReview {
     private Book book;
 
     // dto -> entity
-    public static BookReview toEntity(BookRequestDto bookRequestDto) {
-        return BookReview.builder()
-                .bookId(bookRequestDto.getBookId())
-                .userId(bookRequestDto.getUserId())
-                .openYn(bookRequestDto.getOpenYn())
-                .score(bookRequestDto.getScore())
-                .shortReview(bookRequestDto.getShortReview())
-                .longReview(bookRequestDto.getLongReview())
+    public static Review toEntity(BookReviewRequestDto bookReviewRequestDto) {
+        return Review.builder()
+                .bookId(bookReviewRequestDto.getBookId())
+                .userId(bookReviewRequestDto.getUserId())
+                .openYn(bookReviewRequestDto.getOpenYn())
+                .score(bookReviewRequestDto.getScore())
+                .shortReview(bookReviewRequestDto.getShortReview())
+                .longReview(bookReviewRequestDto.getLongReview())
                 .build();
     }
 

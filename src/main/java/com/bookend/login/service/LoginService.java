@@ -1,22 +1,17 @@
-package com.bookend.login.LoginService;
+package com.bookend.login.service;
 
 import com.bookend.login.domain.Role;
-import com.bookend.login.domain.UserResponseDto;
+import com.bookend.login.domain.dto.UserResponseDto;
 import com.bookend.login.domain.entity.User;
 import com.bookend.login.repository.UserRepository;
+import com.bookend.login.domain.SessionUser;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +19,7 @@ public class LoginService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final HttpSession httpSession;
 
     public UserResponseDto guestSave() throws UnknownHostException {
 
@@ -42,6 +38,8 @@ public class LoginService {
 
         // User 저장
         userRepository.save(user);
+        httpSession.invalidate(); // 현재 세션을 무효화 시킴
+        httpSession.setAttribute("user", new SessionUser(user)); // 세션에 사용자 정보 저장
 
         return UserResponseDto.toDto(user); // entity -> dto
     }

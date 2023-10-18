@@ -596,3 +596,6 @@ form .input::placeholder {
 .openChk input {
     margin-right:5px;
 }
+.review-item {
+    display: flex;
+}

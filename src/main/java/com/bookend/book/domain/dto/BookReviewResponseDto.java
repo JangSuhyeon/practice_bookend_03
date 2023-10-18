@@ -1,7 +1,7 @@
 package com.bookend.book.domain.dto;
 
-import com.bookend.book.domain.Book;
-import com.bookend.book.domain.BookReview;
+import com.bookend.book.domain.entity.Book;
+import com.bookend.book.domain.entity.Review;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -23,17 +23,17 @@ public class BookReviewResponseDto {
     private Boolean openYn;
     private String regDt;
 
-    public static BookReviewResponseDto toDto(BookReview bookReview) {
+    public static BookReviewResponseDto toDto(Review review) {
         SimpleDateFormat sdf = new SimpleDateFormat("yy년 M월 dd일");
         return BookReviewResponseDto.builder()
-                .book(bookReview.getBook())
-                .reviewId(bookReview.getReviewId())
-                .userId(bookReview.getUserId())
-                .shortReview(bookReview.getShortReview())
-                .longReview(bookReview.getLongReview())
-                .score(bookReview.getScore())
-                .openYn(bookReview.getOpenYn())
-                .regDt(sdf.format(bookReview.getRegDt()))
+                .book(review.getBook())
+                .reviewId(review.getReviewId())
+                .userId(review.getUserId())
+                .shortReview(review.getShortReview())
+                .longReview(review.getLongReview())
+                .score(review.getScore())
+                .openYn(review.getOpenYn())
+                .regDt(sdf.format(review.getRegDt()))
                 .build();
     }
 

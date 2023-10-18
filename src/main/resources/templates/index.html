@@ -12,23 +12,23 @@
 
 	<body>
         <div class="main-contents">
-            <ul class="bookReview-list">
-                <li th:each="bookReview:${bookReviewList}" class="review-item" th:data-review-id="${bookReview.reviewId}">
-                    <input type="hidden" class="list-score-value" th:value="${bookReview.score}"/>
-                    <figure class="list-cover"><img th:src="${bookReview.book.cover}"></figure>
+            <ul class="review-list">
+                <li th:each="review:${bookReviewList}" class="review-item" th:data-review-id="${review.reviewId}">
+                    <input type="hidden" class="list-score-value" th:value="${review.score}"/>
+                    <figure class="list-cover"><img th:src="${review.book.cover}"></figure>
                     <div class="list-info">
                         <div class="list-title-container">
-                            <p class="list-title" th:text="${bookReview.book.title}"></p>
+                            <p class="list-title" th:text="${review.book.title}"></p>
                             <div class="list-openYn">
-                                <p th:if="${bookReview.openYn eq true}" class="list-open-y">공개</p>
-                                <p th:if="${bookReview.openYn eq false}" class="list-open-n">비공개</p>
+                                <p th:if="${review.openYn eq true}" class="list-open-y">공개</p>
+                                <p th:if="${review.openYn eq false}" class="list-open-n">비공개</p>
                             </div>
                         </div>
                         <div class="list-con-container">
-                            <p class="list-shortReview" th:text="${bookReview.shortReview}"></p>
+                            <p class="list-shortReview" th:text="${review.shortReview}"></p>
                             <div class="list-sd">
                                 <p class="list-score" ></p>
-                                <p class="list-date" th:text="${bookReview.regDt}"></p>
+                                <p class="list-date" th:text="${review.regDt}"></p>
                             </div>
                         </div>
                     </div>
