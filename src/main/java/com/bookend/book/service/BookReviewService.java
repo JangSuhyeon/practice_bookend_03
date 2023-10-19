@@ -97,4 +97,8 @@ public class BookReviewService {
         reviewRepository.save(review);
 
     }
+
+    public void deleteReview(BookReviewRequestDto review) {
+        reviewRepository.deleteById(review.getReviewId());
+    }
 }

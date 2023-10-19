@@ -107,4 +107,12 @@ public class BookReviewController {
         return "redirect:/review/" + review.getReviewId();
     }
 
+    @PostMapping("/delete")
+    public String deleteReview(BookReviewRequestDto review) {
+
+        bookReviewService.deleteReview(review);
+
+        return "redirect:/";
+    }
+
 }

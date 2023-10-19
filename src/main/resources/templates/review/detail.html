@@ -12,7 +12,7 @@
 
 	<body>
         <div class="main-contents">
-            <form>
+            <form th:action="@{/review/delete}" method="post">
                 <input type="hidden" name="reviewId" th:value="${review.reviewId}">
                 <input type="hidden" class="score" th:value="${review.score}">
 
@@ -72,7 +72,8 @@
                     <!--Todo 목록보기 버튼 추가-->
 
                     <!--자신이 작성한 글만 수정하기 버튼이 보임-->
-                    <a th:if="${review.userId eq loginUserId}" type="button" id="book-modify-btn" class="gra-btn" th:href="@{/review/modify/{reviewId}(reviewId = ${review.reviewId})}">수정하기</a>
+                    <a th:if="${review.userId eq loginUserId}" id="book-modify-btn" class="gra-btn" th:href="@{/review/modify/{reviewId}(reviewId = ${review.reviewId})}">수정하기</a>
+                    <button th:if="${review.userId eq loginUserId}" type="submit" id="book-delete-btn" class="gra-btn">삭제하기</button>
                 </div>
             </form>
         </div>
