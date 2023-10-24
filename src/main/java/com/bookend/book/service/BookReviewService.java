@@ -64,7 +64,6 @@ public class BookReviewService {
         }else { // 구글 계정
             id = user.getId();
         }
-        System.out.println("id : " + id);
 
         List<Review> bookList = reviewRepository.findAllByUserId(id);
 

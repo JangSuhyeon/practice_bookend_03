@@ -22,7 +22,6 @@ public class MainController {
     public String goToMain(@LoginUser SessionUser user, @AuthenticationPrincipal Object principalUser, Model model) {
         if (user != null) {
             model.addAttribute("username", user.getName());
-            System.out.println("username : " + user.getName());
         }
 
         // 독후감 목록
