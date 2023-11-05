@@ -10,14 +10,12 @@
     </head>
 
     <body>
-        <div class="container">
-            <div class="wrapper">
-                <!--Sidebar 영역을 참조합니다.-->
-                <aside th:replace="common/fragments/sidebar :: SidebarFragment"></aside>
+        <div class="review-container">
+            <aside th:replace="common/fragments/sidebar :: SidebarFragment"></aside>
 
-                <!--Content 내용 영역을 참조합니다-->
-                <th:block layout:fragment="Content"></th:block>
-            </div>
+            <th:block layout:fragment="Content"></th:block>
+
+            <aside th:replace="common/fragments/calendar :: CalendarFragment"></aside>
         </div>
     </body>
 </html>

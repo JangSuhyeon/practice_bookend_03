@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Thymeleaf 선언 / headerFragment 임을 선언-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="SidebarFragment">
+    <!-- sidebar -->
+    <div class="sidebar-container">
+        <div sec:authorize="hasRole('ROLE_USER')" class="siderbar-userinfo">
+            <figure><img th:src="${#authentication.principal.attributes['picture']}" alt="google picture"/></figure>
+            <p class="sidebar-name-container">
+                <span class="sidebar-name" th:text="${#authentication.principal.attributes['name']}"></span>
+                <span class="sidebar-role">일반 사용자</span>
+            </p>
+        </div>
+        <div sec:authorize="hasRole('ROLE_GUEST')" class="siderbar-userinfo">
+            <figure><img th:src="@{/images/sample_profile.jpg}" alt="guest picture"/></figure>
+            <p class="sidebar-name-container">
+                <span class="sidebar-name" th:text="${#authentication.principal.user.name}"></span>
+                <span class="sidebar-role">손님</span>
+            </p>
+        </div>
+
+        <a class="gra-btn" href="/review/write">독후감 쓰기</a>
+        <a class="siderbar-btn siderbar-btn-1" href="/"><figure><img src="/images/sidebar_list_icon.png"></figure>독후감 목록</a>
+
+        <ul class="sidebar-chat-container">
+            <li><a class="siderbar-btn siderbar-btn-2"  href="">
+                <figure><img src="/images/sample_profile.jpg"></figure>
+                <div class="sidebar-title">도시와 그 불확실한 벽</div>
+                <div class="sidebar-cnt-container">
+                    <div class="sidebar-cnt">5</div>
+                    <div class="sidebar-date">14:27</div>
+                </div>
+            </a></li>
+            <li><a class="siderbar-btn siderbar-btn-2"  href="">
+                <figure><img src="/images/sample_profile.jpg"></figure>
+                <div class="sidebar-title">퓨처 셀프</div>
+                <div class="sidebar-cnt-container">
+                    <div class="sidebar-cnt">5</div>
+                    <div class="sidebar-date">9월 12일</div>
+                </div>
+            </a></li>
+            <li><a class="siderbar-btn siderbar-btn-2"  href="">
+                <figure><img src="/images/sample_profile.jpg"></figure>
+                <div class="sidebar-title">디케의 눈물</div>
+                <div class="sidebar-cnt-container">
+                    <div class="sidebar-date">9월 12일</div>
+                </div>
+            </a></li>
+        </ul>
+    </div>
+</html>

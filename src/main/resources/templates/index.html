@@ -11,29 +11,63 @@
 	</head>
 
 	<body>
-        <div class="main-contents">
-            <ul class="review-list">
-                <li th:each="review:${bookReviewList}" class="review-item" th:data-review-id="${review.reviewId}">
-                    <input type="hidden" class="list-score-value" th:value="${review.score}"/>
-                    <figure class="list-cover"><img th:src="${review.book.cover}"></figure>
-                    <div class="list-info">
-                        <div class="list-title-container">
-                            <p class="list-title" th:text="${review.book.title}"></p>
-                            <div class="list-openYn">
-                                <p th:if="${review.openYn eq true}" class="list-open-y">공개</p>
-                                <p th:if="${review.openYn eq false}" class="list-open-n">비공개</p>
-                            </div>
-                        </div>
-                        <div class="list-con-container">
-                            <p class="list-shortReview" th:text="${review.shortReview}"></p>
-                            <div class="list-sd">
-                                <p class="list-score" ></p>
-                                <p class="list-date" th:text="${review.regDt}"></p>
-                            </div>
-                        </div>
+        <div class="review-contents">
+        <div class="review-contents-title">
+            <h2>나의 독후감</h2>
+            <input type="text" placeholder="도서를 검색해주세요.">
+        </div>
+        <div class="review-contents-list">
+            <ul>
+                <li>
+                    <div class="review-book-img"><img src="images/8949162539_2.jpg"></div>
+                    <div class="review-book-contents">
+                        <h2>하하 자매 떡집</h2>
+                        <p>한줄평 입니다~~ 반갑습니다!!</p>
+                    </div>
+                    <div class="review-book-info">
+                        <p>2023-11-04</p>
+                        <p>🧡🧡🧡🧡🧡</p>
+                        <p class="review-openYn">공개</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="review-book-img"><img src="images/8949162539_2.jpg"></div>
+                    <div class="review-book-contents">
+                        <h2>하하 자매 떡집</h2>
+                        <p>한줄평 입니다~~ 반갑습니다!!</p>
+                    </div>
+                    <div class="review-book-info">
+                        <p>2023-11-04</p>
+                        <p>🧡🧡🧡🧡🧡</p>
+                        <p class="review-openYn">공개</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="review-book-img"><img src="images/8949162539_2.jpg"></div>
+                    <div class="review-book-contents">
+                        <h2>하하 자매 떡집</h2>
+                        <p>한줄평 입니다~~ 반갑습니다!!</p>
+                    </div>
+                    <div class="review-book-info">
+                        <p>2023-11-04</p>
+                        <p>🧡🧡🧡🧡🧡</p>
+                        <p class="review-openYn">공개</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="review-book-img"><img src="images/8949162539_2.jpg"></div>
+                    <div class="review-book-contents">
+                        <h2>하하 자매 떡집</h2>
+                        <p>한줄평 입니다~~ 반갑습니다!!</p>
+                    </div>
+                    <div class="review-book-info">
+                        <p>2023-11-04</p>
+                        <p>🧡🧡🧡🧡🧡</p>
+                        <p class="review-openYn">공개</p>
                     </div>
                 </li>
             </ul>
         </div>
+    </div>
     </body>
 </html>

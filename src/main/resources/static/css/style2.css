@@ -267,3 +267,280 @@ body {
     height:22px;
     line-height:22px;
 }
+
+
+/* 독후감 */
+.review-container {
+    display: flex;
+}
+.review-sidebar {
+    position: fixed;
+    top:0;
+    left:0;
+    display: flex;
+    width:414px;
+    height:100%;
+    background-color: #fff;
+}
+.review-sidebar-menu {
+    padding:25px 0 50px;
+    margin-bottom:50px;
+}
+.review-sidebar-menu a {
+    display: inline-block;
+    padding:25px 35px;
+}
+.review-sidebar-menu .active path {
+    fill: #4c55e5;
+}
+.review-sidebar-chat {
+    padding:20px 15px;
+    background-color: #F5F7FB;
+}
+.review-chat-user {
+    display: flex;
+    align-items: center;
+}
+.review-chat-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:65px;
+    height:65px;
+    margin-right:15px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.review-chat-profile > div {
+    position: relative;
+    overflow: hidden;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+}
+.review-chat-profile > div img {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:100%;
+    height:100%;
+}
+.review-chat-info {
+    width: 190px;
+}
+.review-chat-info > h2 {
+    color:#313131;
+    font-size:19px;
+    font-weight: 700;
+    padding-bottom:8px;
+}
+.review-chat-info > p {
+    color:#c3c3c3;
+    font-size:15px;
+    font-weight: 500;
+}
+.review-write-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    padding:18px 0;
+    margin:30px 0 45px;
+    background-color: #4c55e5;
+    color:#fff;
+    font-size:16px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+.review-write-btn > svg {
+    margin-left: 10px;
+}
+.review-chat-list > h2 {
+    font-size:18px;
+    font-weight: 700;
+    color:#313131;
+    padding-bottom:15px;
+    padding-left:8px;
+}
+.review-chat-list > h2 >span {
+    font-size:18px;
+    font-weight: 600;
+    color:#4c55e5;
+    padding-left:7px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.review-chat-list li {
+    display: flex;
+    align-items: center;
+    padding:13px 17px;
+    border-radius: 10px;
+}
+.review-chat-list li.active {
+    background-color: #fff;
+}
+.review-chat-list-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:55px;
+    height:55px;
+    margin-right:10px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border:1px solid #e5e5e5;
+}
+.review-chat-list-profile > div {
+    position: relative;
+    overflow: hidden;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+}
+.review-chat-list-profile > div img {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:100%;
+    height:100%;
+}
+.review-chat-list-info {
+    width:160px;
+}
+.review-chat-list-info >h2 {
+    font-size:16px;
+    font-weight: 700;
+    color:#313131;
+    padding-bottom:8px;
+}
+.review-chat-list-info >p {
+    font-size:14px;
+    color:#c3c3c3;
+    font-weight: 500;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.review-chat-list-alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+    background-color: #fd5032;
+    color:#fff;
+    font-size:17px;
+    font-weight: 600;
+    padding-bottom: 1px;
+    margin-left:10px;
+}
+.review-contents {
+    flex-grow: 1;
+    min-width:730px;
+    padding:55px 45px;
+    margin-left:414px;
+    min-height:100vh;
+    background-color: #fff;
+}
+.review-right {
+    padding:40px 25px;
+    background-color: #F5F7FB;
+}
+.review-right > img {
+    width:250px;
+    height:auto;
+    border:1px solid #f5f5f5;
+}
+.review-contents-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    margin-bottom: 10px;
+}
+.review-contents-title > h2 {
+    font-size:22px;
+    color:#313131;
+    font-weight: 700;
+}
+.review-contents-title > input {
+    width:300px;
+    height:50px;
+    line-height:50px;
+    border-radius: 25px;
+    border:1px solid #dddddd;background-image: url('../images/search.png'); /* 이미지 경로를 지정하세요 */
+    background-size: 20px 20px; /* 이미지 크기를 조절하세요 */
+    background-position: 15px 15px; /* 이미지의 위치를 조절하세요 */
+    background-repeat: no-repeat;
+    padding-left: 43px;
+    font-size:18px;
+    font-weight: 500;
+    color: #313131;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.review-contents-title > input::placeholder {
+    font-size:18px;
+    font-weight: 500;
+    color:#ddd;
+    line-height:50px !important;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.review-contents-list li {
+    display: flex;
+    align-items: center;
+    padding:20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.review-book-img {
+    width:70px;
+    height:80px;
+    overflow: hidden;
+    margin-right:15px;
+}
+.review-book-img > img {
+    width:100%;
+    height:100%;
+}
+.review-book-contents {
+    margin-right:15px;
+}
+.review-book-contents > h2 {
+    font-size:18px;
+    font-weight: 600;
+    color:#313131;
+    padding-bottom: 12px;
+}
+.review-book-contents > p {
+    font-size:17px;
+    font-weight: 400;
+    color:#999999;
+}
+.review-book-info {
+    margin-left:auto;
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+.review-book-info p {
+    font-family: 'Noto Sans KR', sans-serif;
+    color:#999999;
+    font-size:15px;
+    font-weight: 400;
+}
+.review-openYn {
+    display: inline-block;
+    width:65px;
+    height:26px;
+    line-height: 26px;
+    border-radius: 13px;
+    text-align: center;
+    background-color: #4c55e5;
+    color:#fff !important;
+    font-size: 12px;
+    font-weight: 500;
+}
