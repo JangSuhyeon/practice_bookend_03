@@ -18,52 +18,18 @@
         </div>
         <div class="review-contents-list">
             <ul>
-                <li>
-                    <div class="review-book-img"><img src="images/8949162539_2.jpg"></div>
+                <li th:each="review:${bookReviewList}" class="review-item" th:data-review-id="${review.reviewId}">
+                    <input type="hidden" class="list-score-value" th:value="${review.score}"/>
+                    <div class="review-book-img"><img th:src="${review.book.cover}"></div>
                     <div class="review-book-contents">
-                        <h2>하하 자매 떡집</h2>
-                        <p>한줄평 입니다~~ 반갑습니다!!</p>
+                        <h2 th:text="${review.book.title}"></h2>
+                        <p th:text="${review.shortReview}"></p>
                     </div>
                     <div class="review-book-info">
-                        <p>2023-11-04</p>
-                        <p>🧡🧡🧡🧡🧡</p>
-                        <p class="review-openYn">공개</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="review-book-img"><img src="images/8949162539_2.jpg"></div>
-                    <div class="review-book-contents">
-                        <h2>하하 자매 떡집</h2>
-                        <p>한줄평 입니다~~ 반갑습니다!!</p>
-                    </div>
-                    <div class="review-book-info">
-                        <p>2023-11-04</p>
-                        <p>🧡🧡🧡🧡🧡</p>
-                        <p class="review-openYn">공개</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="review-book-img"><img src="images/8949162539_2.jpg"></div>
-                    <div class="review-book-contents">
-                        <h2>하하 자매 떡집</h2>
-                        <p>한줄평 입니다~~ 반갑습니다!!</p>
-                    </div>
-                    <div class="review-book-info">
-                        <p>2023-11-04</p>
-                        <p>🧡🧡🧡🧡🧡</p>
-                        <p class="review-openYn">공개</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="review-book-img"><img src="images/8949162539_2.jpg"></div>
-                    <div class="review-book-contents">
-                        <h2>하하 자매 떡집</h2>
-                        <p>한줄평 입니다~~ 반갑습니다!!</p>
-                    </div>
-                    <div class="review-book-info">
-                        <p>2023-11-04</p>
-                        <p>🧡🧡🧡🧡🧡</p>
-                        <p class="review-openYn">공개</p>
+                        <p th:text="${review.regDt}"></p>
+                        <p class="list-score"></p>
+                        <p th:if="${review.openYn eq true}" class="review-openYn">공개</p>
+                        <p th:if="${review.openYn eq false}" class="review-openYn">비공개</p>
                     </div>
                 </li>
             </ul>
