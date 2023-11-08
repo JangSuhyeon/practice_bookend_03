@@ -269,7 +269,7 @@ body {
 }
 
 
-/* 독후감 */
+/* 독후감 메인 */
 .review-container {
     display: flex;
 }
@@ -544,4 +544,27 @@ body {
     color:#fff !important;
     font-size: 12px;
     font-weight: 500;
+}
+
+/* 독후감 작성하기 */
+.review-write-con .title {
+    margin-bottom:10px;
+}
+.review-write-con .select2-container,
+.review-write-con p {
+    display: inline-block;
+    width:100% !important;
+    height:50px;
+    line-height:50px;
+    margin-bottom:25px;
+    background-color: #F5F7FB;
+    border:1px solid #ddd;
+    border-radius: 10px;
+}
+.review-write-con .row-3 {
+    display: flex;
+    gap:10px;
+}
+.review-write-con .row-3 > div {
+    flex-grow: 1;
 }
