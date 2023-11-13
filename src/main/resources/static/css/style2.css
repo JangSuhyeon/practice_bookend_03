@@ -2,8 +2,8 @@
 body {
     margin: 0;
     padding: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: #f5f5f5;
 }
 
@@ -270,9 +270,6 @@ body {
 
 
 /* 독후감 메인 */
-.review-container {
-    display: flex;
-}
 .review-sidebar {
     position: fixed;
     top:0;
@@ -441,14 +438,18 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
 }
 .review-contents {
-    flex-grow: 1;
-    min-width:730px;
+    width:calc(100vw - 714px);
     padding:55px 45px;
     margin-left:414px;
     min-height:100vh;
     background-color: #fff;
 }
 .review-right {
+    position: fixed;
+    top:0;
+    right:0;
+    width:300px;
+    height:100%;
     padding:40px 25px;
     background-color: #F5F7FB;
 }
@@ -480,7 +481,7 @@ body {
     background-repeat: no-repeat;
     padding-left: 43px;
     font-size:18px;
-    font-weight: 500.review-chat-list-alert
+    font-weight: 500;
     color: #313131;
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -492,6 +493,7 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
 }
 .review-contents-list li {
+    cursor: pointer;
     display: flex;
     align-items: center;
     padding:20px 0;
@@ -509,6 +511,7 @@ body {
 }
 .review-book-contents {
     margin-right:15px;
+    flex: 0 0 calc(100% - 402px);
 }
 .review-book-contents > h2 {
     font-size:18px;
@@ -518,6 +521,7 @@ body {
 }
 .review-book-contents > p {
     font-size:17px;
+    line-height:21px;
     font-weight: 400;
     color:#999999;
 }
@@ -549,7 +553,7 @@ body {
 /* 독후감 작성하기 */
 .review-write-con .row {
     display: flex;
-    align-items: center;
+    align-items: start;
 }
 .review-write-con .row > * {
     flex-grow: 1;
@@ -571,12 +575,12 @@ body {
     top:12px;
 }
 .review-write-con .select2-container .select2-selection--single,
-.review-write-con p,
+.review-write-con .col > p,
 .review-write-con #shortReview{
     display: inline-block;
     width:100% !important;
-    height:50px;
-    line-height:50px;
+    min-height:50px;
+    line-height:23px;
     background-color: #F5F7FB;
     border:1px solid #ddd;
     border-radius: 10px;
@@ -584,6 +588,9 @@ body {
 .review-write-con p,
 .review-write-con #shortReview {
     margin-bottom:25px;
+}
+.review-write-con .col > p {
+    padding:13px 15px;
 }
 .review-write-con #shortReview {
     padding:0 15px;
@@ -606,18 +613,23 @@ body {
     gap:10px;
 }
 .review-write-con .row-3 > div {
-    flex-grow: 1;
+    flex:0 0 calc((100% - 20px)/3);
 }
 .review-write-con .cover {
     flex:0 0 120px;
     height:160px;
     overflow: hidden;
+    margin:auto ;
     margin-left:20px;
     border-radius: 5px;
+    background-color: #F5F7FB;
+    border: 1px solid #ddd;
+    padding:2px;
 }
 .review-write-con .cover > img {
     width:100%;
     height:100%;
+    border:0;
 }
 .review-write-con .row-2 {
     display: flex;
@@ -638,11 +650,74 @@ body {
 }
 .review-write-con textarea {
     width:100%;
-    height:calc(100vh - 500px);
+    height:calc(100vh - 518px);
     padding:15px;
     box-sizing: border-box;
     border:1px solid #ddd;
     border-radius: 10px;
     resize: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:16px;
+    line-height:21px;
 }
-.review-write-con .btn-controller
+.review-write-con .btn-controller {
+    margin-top:25px;
+    display: flex;
+    justify-content: end;
+}
+.review-write-con .btn-controller .review-write-btn {
+    width:25%;
+    padding:10px 0;
+    margin:0;
+}
+.selection img {
+    display: none;
+}
+
+
+/*독후감 상세보기*/
+.list-openYn {
+    flex:0 0 110px;
+}
+.list-openYn > p {
+    display: inline-block;
+    width:100%;
+    border-radius: 10px;
+    background-color: #7ED3B2;
+    text-align: center;
+    font-size:13px;
+    line-height: 24px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color:#fff;
+}
+.list-openYn > p.list-open-y {
+    background-color: #5AA4FB;
+    color:#fff !important;
+}
+.list-openYn > p.list-open-n {
+    background-color: #ddd;
+}
+.review-detail-con .row-3 > div {
+    flex-grow: 1;
+}
+.review-detail-con .row-3 > div:last-child {
+    flex:0 0 110px;
+}
+.review-detail-con .btn-controller > *  {
+    width:20% !important;
+}
+.btn-controller button,
+.btn-controller a{
+    cursor: pointer;
+    width:250px;
+    height:50px;
+    line-height: 50px;
+    border-radius: 5px;
+    border: 0;
+}
+.book-delete-btn {
+    width:25% !important;
+    margin-left:10px;
+    border:1px solid #ddd !important;
+    box-sizing: border-box;
+}
