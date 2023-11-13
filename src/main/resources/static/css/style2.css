@@ -697,10 +697,12 @@ body {
 .list-openYn > p.list-open-n {
     background-color: #ddd;
 }
-.review-detail-con .row-3 > div {
+.review-detail-con .row-3 > div,
+.review-update-con .row-3 > div{
     flex-grow: 1;
 }
-.review-detail-con .row-3 > div:last-child {
+.review-detail-con .row-3 > div:last-child,
+.review-update-con .row-3 > div:last-child{
     flex:0 0 110px;
 }
 .review-detail-con .btn-controller > *  {
@@ -720,4 +722,16 @@ body {
     margin-left:10px;
     border:1px solid #ddd !important;
     box-sizing: border-box;
+}
+
+
+/*독후감 수정하기*/
+.review-update-con .list-openYn > p {
+    line-height: 52px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor:pointer;
+}
+.review-update-con #shortReview {
+    background-color: #fff;
 }

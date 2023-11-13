@@ -11,8 +11,8 @@
 	</head>
 
 	<body>
-        <div class="main-contents">
-            <form>
+        <div class="review-contents">
+            <form class="review-write-con review-update-con">
                 <input type="hidden" name="reviewId" th:value="${review.reviewId}">
                 <input type="hidden" id="prevOpenYn" th:value="${review.openYn}"/>
                 <input type="hidden" class="score" th:value="${review.score}">
@@ -30,7 +30,7 @@
                                 <p class="input" th:text="${review.book.title}"></p>
                             </div>
                         </div>
-                        <div class="row row-3" style="margin-bottom: 0;">
+                        <div class="row row-3">
                             <div class="col">
                                 <h2 class="input title">작가</h2>
                                 <p class="input" th:text="${review.book.author}"></p>
@@ -41,7 +41,6 @@
                             </div>
                             <div class="col">
                                 <h2 class="input title">공개여부</h2>
-                                <!--클릭할때마다 공개/비공개 toggle-->
                                 <div class="list-openYn" style="display: flex; align-items: center; flex:auto; ">
                                     <input name="openYn" type="hidden" th:value="${review.openYn}">
                                     <p id="openYn"></p>
@@ -71,10 +70,9 @@
                 </div>
 
                 <div class="btn-controller">
-                    <button type="button" id="book-update-btn" class="gra-btn">저장하기</button>
+                    <button type="button" id="book-update-btn" class="review-write-btn">저장하기</button>
                 </div>
             </form>
         </div>
-
     </body>
 </html>
