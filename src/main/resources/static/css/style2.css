@@ -1,3 +1,6 @@
+/*개발예정 팝업*/
+
+
 /* 공통 */
 body {
     margin: 0;
@@ -234,12 +237,16 @@ body {
     text-align: center;
 }
 
-.loginModal-content>h2 {
+.loginModal-content>h2,
+.devPlanModal-content>h2{
     font-size: 32px;
     font-weight: 700;
     color: #393939;
     text-align: center;
     margin-bottom: 35px;
+}
+.devPlanModal-content>h2 {
+    margin-bottom: 0;
 }
 
 .loginModal-content>button,
