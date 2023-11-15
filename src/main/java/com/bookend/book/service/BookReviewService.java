@@ -100,4 +100,16 @@ public class BookReviewService {
     public void deleteReview(BookReviewRequestDto review) {
         reviewRepository.deleteById(review.getReviewId());
     }
+
+    public List<BookReviewResponseDto> findByBook_TitleContaining(String searchReview) {
+        System.out.println("searchReview : " + searchReview);
+        List<Review> reviewList = reviewRepository.findByBook_TitleContaining(searchReview);
+        System.out.println("reviewList : " + reviewList);
+        List<BookReviewResponseDto> bookResponseDtoList = new ArrayList<>();
+        for (Review review : reviewList) {
+            BookReviewResponseDto bookReviewResponseDto = BookReviewResponseDto.toDto(review);
+            bookResponseDtoList.add(bookReviewResponseDto);
+        }
+        return bookResponseDtoList;
+    }
 }
