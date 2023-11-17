@@ -101,10 +101,21 @@ public class BookReviewService {
         reviewRepository.deleteById(review.getReviewId());
     }
 
-    public List<BookReviewResponseDto> findByBook_TitleContaining(String searchReview) {
-        System.out.println("searchReview : " + searchReview);
-        List<Review> reviewList = reviewRepository.findByBook_TitleContaining(searchReview);
-        System.out.println("reviewList : " + reviewList);
+    public List<BookReviewResponseDto> findByBook_TitleContaining(String searchReview,
+                                                                  Object principalUser,
+                                                                  SessionUser user) {
+
+       Long id;
+        if (principalUser instanceof UserDetails) { // 게스트 계정
+            id = ((PrincipalDetails) principalUser).getUser().getId();
+        }else { // 구글 계정
+            id = user.getId();
+        }
+
+        // 독후감 검색 조회
+        List<Review> reviewList = reviewRepository.findByBook_TitleContainingAndUserId(searchReview, id);
+
+        // entity -> DTO
         List<BookReviewResponseDto> bookResponseDtoList = new ArrayList<>();
         for (Review review : reviewList) {
             BookReviewResponseDto bookReviewResponseDto = BookReviewResponseDto.toDto(review);

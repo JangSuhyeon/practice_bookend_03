@@ -18,6 +18,10 @@
         </div>
         <div class="review-contents-list">
             <ul>
+                <th:block th:if="${#lists.isEmpty(bookReviewList)}">
+                    <p class="review-no-contents">작성된 독후감이 없습니다.</p>
+                </th:block>
+                <th:block th:if="${not #lists.isEmpty(bookReviewList)}">
                 <li th:each="review:${bookReviewList}" class="review-item" th:data-review-id="${review.reviewId}">
                     <input type="hidden" class="list-score-value" th:value="${review.score}"/>
                     <div class="review-book-img"><img th:src="${review.book.cover}"></div>
@@ -32,6 +36,7 @@
                         <p th:if="${review.openYn eq false}" class="review-openYn">비공개</p>
                     </div>
                 </li>
+                </th:block>
             </ul>
         </div>
     </div>

@@ -1,6 +1,7 @@
 package com.bookend.book.domain.entity;
 
 import com.bookend.book.domain.dto.BookReviewRequestDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class Book {
     private String cover;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Todo ???
     private List<Review> reviewList = new ArrayList<>();
 
     public static Book toEntity(BookReviewRequestDto bookReviewRequestDto) {

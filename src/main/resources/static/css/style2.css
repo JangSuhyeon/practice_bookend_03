@@ -499,6 +499,12 @@ body {
     line-height:43px !important;
     font-family: 'Noto Sans KR', sans-serif;
 }
+.review-contents-list .review-no-contents {
+    text-align: center;
+    font-weight: bold;
+    color:#999;
+    padding:30px 0;
+}
 .review-contents-list li {
     cursor: pointer;
     display: flex;

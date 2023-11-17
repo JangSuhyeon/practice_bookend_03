@@ -1,10 +1,8 @@
 package com.bookend.book.domain.entity;
 
 import com.bookend.book.domain.dto.BookReviewRequestDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +12,7 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Review {
 
     @Id
@@ -39,6 +38,7 @@ public class Review {
     // Book과 조인
     @ManyToOne
     @JoinColumn(name = "bookId", insertable = false, updatable = false)
+    @JsonBackReference // Todo ???
     private Book book;
 
     // dto -> entity

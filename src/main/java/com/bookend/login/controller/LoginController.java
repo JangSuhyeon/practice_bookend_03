@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 @RequiredArgsConstructor
 @Controller
@@ -23,6 +24,7 @@ public class LoginController {
     // 로그인 화면으로
     @GetMapping("/page")
     public String goToLogin(@LoginUser SessionUser user, Model model) {
+
         return "login/login";
     }
 

@@ -22,13 +22,13 @@ $(function () {
     });
 
     // li 요소 클릭 시 독후감 상세 화면으로 이동
-    $('.review-item').click(function() {
+    $(document).on('click', '.review-item', function() {
         var reviewId = $(this).data('review-id');   // 독후감 PK
         window.location.href = '/review/' + reviewId;
     });
 
     // 도서 검색 input에 입력 시 이벤트 발생
-    $("#searchReview").on("input", function(){
+    $("#searchReview").keypress(function(){
         // 입력값 가져오기
         var searchReview = $(this).val();
 
@@ -39,40 +39,39 @@ $(function () {
             contentType:'application/json; charset=UTF-8',
             success:function (res) {
                 console.log(res);
-                var bookReviewList = res.bookReviewList;
-                bookReviewList.forEach(function (review) {
-                    // Create a new list item
-                    var listItem = $('<li>').addClass('review-item').attr('data-review-id', review.reviewId);
+                $('.review-contents-list > ul').empty(); // 독후감 목록 초기화
 
-                    // Add hidden input for score
-                    $('<input>').attr('type', 'hidden').addClass('list-score-value').attr('value', review.score).appendTo(listItem);
+                var bookReviewList = res.bookReviewList; // 검색된 독후감 목록
+                if (bookReviewList.length > 0 ) {
+                    bookReviewList.forEach(function (review) {
 
-                    // Add book image
-                    $('<div>').addClass('review-book-img').append($('<img>').attr('src', review.book.cover)).appendTo(listItem);
+                        var listItem = $('<li>').addClass('review-item').attr('data-review-id', review.reviewId);
 
-                    // Add book contents
-                    var bookContents = $('<div>').addClass('review-book-contents');
-                    $('<h2>').text(review.book.title).appendTo(bookContents);
-                    $('<p>').text(review.shortReview).appendTo(bookContents);
-                    bookContents.appendTo(listItem);
+                        $('<input>').attr('type', 'hidden').addClass('list-score-value').attr('value', review.score).appendTo(listItem);
 
-                    // Add review info
-                    var reviewInfo = $('<div>').addClass('review-book-info');
-                    $('<p>').text(review.regDt).appendTo(reviewInfo);
-                    $('<p>').addClass('list-score').appendTo(reviewInfo);
+                        $('<div>').addClass('review-book-img').append($('<img>').attr('src', review.book.cover)).appendTo(listItem);
 
-                    // Check and add openYn status
-                    if (review.openYn) {
-                        $('<p>').addClass('review-openYn').text('공개').appendTo(reviewInfo);
-                    } else {
-                        $('<p>').addClass('review-openYn').text('비공개').appendTo(reviewInfo);
-                    }
+                        var bookContents = $('<div>').addClass('review-book-contents');
+                        $('<h2>').text(review.book.title).appendTo(bookContents);
+                        $('<p>').text(review.shortReview).appendTo(bookContents);
+                        bookContents.appendTo(listItem);
 
-                    reviewInfo.appendTo(listItem);
+                        var reviewInfo = $('<div>').addClass('review-book-info');
+                        $('<p>').text(review.regDt).appendTo(reviewInfo);
+                        $('<p>').addClass('list-score').appendTo(reviewInfo);
 
-                    // Append the list item to the review list
-                    $('.your-review-list-selector').append(listItem);
-                });
+                        if (review.openYn) {
+                            $('<p>').addClass('review-openYn').text('공개').appendTo(reviewInfo);
+                        } else {
+                            $('<p>').addClass('review-openYn').text('비공개').appendTo(reviewInfo);
+                        }
+
+                        reviewInfo.appendTo(listItem);
+                        $('.review-contents-list > ul').append(listItem);
+                    });
+                } else {
+                    $('.review-contents-list > ul').append($('<p>').addClass('review-no-contents').text('검색된 도서의 독후감이 없습니다.'));
+                }
             }
         })
     });

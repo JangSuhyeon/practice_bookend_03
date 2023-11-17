@@ -118,11 +118,13 @@ public class BookReviewController {
     // 독후감 검색
     @ResponseBody
     @PostMapping(value = "/search", produces = "application/json; charset=UTF-8")
-    public HashMap reviewSearch(@RequestBody HashMap<String, String> searchReview) {
+    public HashMap reviewSearch(@RequestBody HashMap<String, String> searchReview,
+                                @LoginUser SessionUser user,
+                                @AuthenticationPrincipal Object principalUser) {
         HashMap<String, Object> result = new HashMap<>();
 
         // 독후감 검색 목록
-        List<BookReviewResponseDto> bookReviewList = bookReviewService.findByBook_TitleContaining(searchReview.get("searchReview"));
+        List<BookReviewResponseDto> bookReviewList = bookReviewService.findByBook_TitleContaining(searchReview.get("searchReview"), principalUser, user);
         result.put("bookReviewList", bookReviewList);
 
         return result;
