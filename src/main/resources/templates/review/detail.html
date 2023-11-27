@@ -79,10 +79,10 @@
         </div>
 
         <!--채팅 참가하기 버튼-->
-        <a class="chat-plus-btn">
-            <span th:text="${review.book.title}"></span>
-            채팅 참가하기
-        </a>
+        <form action="/chat/create" method="post">
+            <input type="hidden" name="isbn" th:value="${review.book.isbn}"/>
+            <button class="chat-plus-btn" type="submit" ><span th:text="${review.book.title}"></span>채팅 참가하기</button>
+        </form>
 
     </body>
 </html>

@@ -444,7 +444,8 @@ body {
     margin-left:10px;
     font-family: 'Noto Sans KR', sans-serif;
 }
-.review-contents {
+.review-contents,
+.chat-contents{
     width:calc(100vw - 714px);
     padding:55px 45px;
     margin-left:414px;
@@ -747,4 +748,30 @@ body {
 }
 .review-update-con #shortReview {
     background-color: #fff;
+}
+
+.chat-plus-btn {
+    z-index : 1;
+    position: fixed;
+    bottom:50px;
+    right:-8px;
+    display: flex;
+    align-items: center;
+    width:270px;
+    height:60px;
+    padding:0 25px;
+    background-color: #fd5032;
+    color:#fff;
+    font-weight: bold;
+    border-radius: 8px;
+    line-height:16px;
+    cursor: pointer;
+}
+.chat-plus-btn > span {
+    width:120px;
+    height:16px;
+    white-space: nowrap; /* 텍스트를 한 줄에 표시합니다. */
+    overflow: hidden; /* 넘치는 부분을 숨깁니다. */
+    text-overflow: ellipsis;
+    padding-right:4px;
 }
